@@ -39,6 +39,10 @@ public class CitaGeneral extends CitaMedica {
         this.edadPaciente = edadPaciente;
     }
 
+    public double calcularCosto() {
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "CitaGeneral{" +

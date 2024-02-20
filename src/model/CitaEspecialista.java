@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class CitaEspecialista extends CitaMedica{
+public class CitaEspecialista extends CitaMedica {
 
     private String especialidad;
     private int consultorio;
@@ -37,6 +37,10 @@ public class CitaEspecialista extends CitaMedica{
 
     public void setMedico(String medico) {
         this.medico = medico;
+    }
+
+    public double calcularCosto() {
+        return (getCosto()*1.5);
     }
 
     @Override

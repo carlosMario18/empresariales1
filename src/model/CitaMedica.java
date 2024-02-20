@@ -38,6 +38,7 @@ public abstract class CitaMedica {
         this.costo = costo;
     }
 
+    public abstract double calcularCosto();
     @Override
     public String toString() {
         return "CitaMedica{" +
