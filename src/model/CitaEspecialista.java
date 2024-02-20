@@ -38,4 +38,14 @@ public class CitaEspecialista extends CitaMedica{
     public void setMedico(String medico) {
         this.medico = medico;
     }
+
+    @Override
+    public String toString() {
+        return "CitaEspecialista{" +
+                super.toString() + " " +
+                "especialidad='" + especialidad + '\'' +
+                ", consultorio=" + consultorio +
+                ", medico='" + medico + '\'' +
+                '}';
+    }
 }
