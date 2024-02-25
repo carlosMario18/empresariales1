@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package vista;
+package view;
 
 import javax.swing.JFrame;
 
@@ -50,7 +50,7 @@ public class vistaModificar extends javax.swing.JFrame {
 
         panelCabeza.setBackground(new java.awt.Color(248, 245, 230));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconPersona.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconPersona.jpeg"))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N

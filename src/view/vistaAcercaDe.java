@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package vista;
+package view;
 import javax.swing.JFrame;
 /**
  *
@@ -54,7 +54,7 @@ public class vistaAcercaDe extends javax.swing.JFrame {
 
         txtNombre2.setText("Luis Alejandro Sanmiguel Galeano              2220221058");
 
-        txtIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconAcercaDe.jpg"))); // NOI18N
+        txtIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconAcercaDe.jpg"))); // NOI18N
 
         panelPrincipalVistaAcercaDe.setLayout(panelPrincipalVistaAcercaDeLayout);
         panelPrincipalVistaAcercaDeLayout.setHorizontalGroup(

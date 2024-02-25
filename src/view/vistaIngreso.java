@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package vista;
+package view;
 
-import vista.*;
 import javax.swing.JFrame;
 
 /**
@@ -190,7 +189,7 @@ public class vistaIngreso extends javax.swing.JFrame {
 
         panelCabeza.setBackground(new java.awt.Color(248, 245, 230));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconHospital.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconHospital.jpeg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
