@@ -81,7 +81,7 @@ public class vistaHistorialPaciente extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Fecha", "Tipo de cita", "Motivo"
             }
         ));
         jScrollPane1.setViewportView(tablaHistorialPaciente);
