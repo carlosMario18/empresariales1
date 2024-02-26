@@ -65,5 +65,6 @@ public abstract class CitaMedica {
 
     public abstract double calcularCosto();
 
+    public abstract boolean idExistente(String numeroIdentificacion);
 
 }

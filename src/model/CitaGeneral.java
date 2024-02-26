@@ -41,4 +41,8 @@ public class CitaGeneral extends CitaMedica {
         return 0;
     }
 
+    public boolean idExistente(String numeroIdentificacion) {
+        return false;
+    }
+
 }
