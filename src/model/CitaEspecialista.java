@@ -8,8 +8,8 @@ public class CitaEspecialista extends CitaMedica {
     private String consultorio;
     private String nombreMedico;
 
-    public CitaEspecialista(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String especialidad, String consultorio, String nombreMedico) {
-        super(numeroIdentificacion, nombrePaciente, fecha, costo);
+    public CitaEspecialista(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String tipoCita, String especialidad, String consultorio, String nombreMedico) {
+        super(numeroIdentificacion, nombrePaciente, fecha, costo, tipoCita);
         this.especialidad = especialidad;
         this.consultorio = consultorio;
         this.nombreMedico = nombreMedico;

@@ -9,11 +9,18 @@ public abstract class CitaMedica {
     private  LocalDate fecha;
     private  int costo;
 
-    public CitaMedica(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo) {
+    private  String  tipoCita;
+
+    public CitaMedica(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String tipoCita) {
         this.numeroIdentificacion = numeroIdentificacion;
         this.nombrePaciente = nombrePaciente;
         this.fecha = fecha;
         this.costo = costo;
+        this.tipoCita = tipoCita;
+    }
+
+    public CitaMedica() {
+
     }
 
     public String getNumeroIdentificacion() {
@@ -42,6 +49,14 @@ public abstract class CitaMedica {
 
     public int getCosto() {
         return costo;
+    }
+
+    public String getTipoCita() {
+        return tipoCita;
+    }
+
+    public void setTipoCita(String tipoCita) {
+        this.tipoCita = tipoCita;
     }
 
     public void setCosto(int costo) {

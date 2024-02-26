@@ -8,8 +8,8 @@ public class CitaGeneral extends CitaMedica {
     private String diagnostico;
     private  int edadPaciente;
 
-    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String sintomas, String diagnostico, int edadPaciente) {
-        super(numeroIdentificacion, nombrePaciente, fecha, costo);
+    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String tipoCita, String sintomas, String diagnostico, int edadPaciente) {
+        super(numeroIdentificacion, nombrePaciente, fecha, costo, tipoCita);
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.edadPaciente = edadPaciente;
