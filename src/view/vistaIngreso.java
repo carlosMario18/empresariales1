@@ -243,21 +243,25 @@ public class vistaIngreso extends JFrame {
             return;
         }
 
-        if (tipoCita.equals("Medico General")) {
-            CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
-            controlador.insertarCita(nuevaCita);
-            listaPacientesFrame.actualizarTablaCitas();
-            vistaGuardarConExito exito = new vistaGuardarConExito();
-            exito.setVisible(true);
+        if (controlador.idExistente(id)) {
+            JOptionPane.showMessageDialog(this, "Error: El ID ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+        }else {
 
-        }else if (tipoCita.equals("Medico Especialista")){
-            CitaGeneral nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
-            controlador.insertarCita(nuevaCita);
-            vistaGuardarConExito exito = new vistaGuardarConExito();
-            exito.setVisible(true);
-        }
-        else {
-            // Manejar otros casos
+            if (tipoCita.equals("Medico General")) {
+                CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
+                controlador.insertarCita(nuevaCita);
+                vistaGuardarConExito exito = new vistaGuardarConExito();
+                exito.setVisible(true);
+                listaPacientesFrame.actualizarTablaCitas();
+
+            } else if (tipoCita.equals("Medico Especialista")) {
+                CitaGeneral nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
+                controlador.insertarCita(nuevaCita);
+                vistaGuardarConExito exito = new vistaGuardarConExito();
+                exito.setVisible(true);
+            } else {
+                // Manejar otros casos
+            }
         }
     }
 

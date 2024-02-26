@@ -332,6 +332,11 @@ public class vistaModificar extends JFrame {
                     public double calcularCosto() {
                         return 0;
                     }
+
+                    @Override
+                    public boolean idExistente(String numeroIdentificacion) {
+                        return false;
+                    }
                 };
                 String tipoCita = ""; // Define el tipo de cita adecuado
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
