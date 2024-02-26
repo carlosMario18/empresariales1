@@ -4,7 +4,11 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import model.CitaMedica;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
@@ -12,12 +16,34 @@ import javax.swing.JFrame;
  */
 public class vistaListaPacientes extends javax.swing.JFrame {
 
+    private ControladorCitas controlador;
+
     /**
      * Creates new form vistaListaPacientes
      */
-    public vistaListaPacientes() {
+    public vistaListaPacientes(ControladorCitas controlador ) {
+        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        actualizarTablaCitas();
+    }
+    public void actualizarTablaCitas() {
+
+        // Obtener las citas del controlador
+        List<CitaMedica> citas = controlador.listarCitas();
+        // Limpiar la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
+        modelo.setRowCount(0);
+        // Llenar la tabla con las nuevas citas
+        for (CitaMedica cita : citas) {
+            Object[] fila = new Object[5];
+            fila[0] = cita.getNumeroIdentificacion();
+            fila[1] = cita.getNombrePaciente();
+            fila[2] = cita.getFecha();
+            fila[3] = cita.getTipoCita();
+            fila[4] = cita.getCosto();
+            modelo.addRow(fila);
+        }
     }
 
     /**
@@ -146,9 +172,17 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaListaPacientes().setVisible(true);
+                // Crear una instancia de ControladorCitas
+                ControladorCitas controlador = new ControladorCitas();
+
+                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+
+                // Hacer visible el frame de vistaListaPacientes
+                listaPacientesFrame.setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
