@@ -18,6 +18,7 @@ public class Main {
 
         // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
         vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+        listaPacientesFrame.actualizarTablaCitas(); // Llamada al método en la instancia creada
 
         // Crear una instancia de vistaIngreso
         vistaIngreso ingresoFrame = new vistaIngreso();

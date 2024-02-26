@@ -46,6 +46,24 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         }
     }
 
+    public void actualizarTablaCitas2() {
+
+        // Obtener las citas del controlador
+        List<CitaMedica> citas = controlador.listarCitas();
+        // Limpiar la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
+        modelo.setRowCount(0);
+        // Llenar la tabla con las nuevas citas
+        for (CitaMedica cita : citas) {
+            Object[] fila = new Object[5];
+            fila[1] = cita.getNombrePaciente();
+            fila[2] = cita.getFecha();
+            fila[3] = cita.getTipoCita();
+            fila[4] = cita.getCosto();
+            modelo.addRow(fila);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
