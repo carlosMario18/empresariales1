@@ -247,6 +247,8 @@ public class vistaIngreso extends JFrame {
             CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, "", "", "", 0);
             controlador.insertarCita(nuevaCita);
             listaPacientesFrame.actualizarTablaCitas();
+            vistaGuardarConExito exito = new vistaGuardarConExito();
+            exito.setVisible(true);
 
         }else if (tipoCita.equals("Medico Especialista")){
             CitaGeneral nuevaCita = new CitaGeneral(id, nombre, fecha, costo, "", "", "", 0);

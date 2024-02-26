@@ -23,6 +23,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
      */
     public vistaListaPacientes(ControladorCitas controlador ) {
         this.controlador = controlador;
+
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
