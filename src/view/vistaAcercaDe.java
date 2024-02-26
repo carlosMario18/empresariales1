@@ -48,11 +48,11 @@ public class vistaAcercaDe extends javax.swing.JFrame {
         labelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         labelTitulo.setText("Acerca de...");
 
-        txtNombre1.setText("Luis Alejandro Sanmiguel Galeano              2220221058");
+        txtNombre1.setText("Luis Alejandro Sanmiguel Galeano  2220221058");
 
-        txtNombre3.setText("Luis Alejandro Sanmiguel Galeano              2220221058");
+        txtNombre3.setText("Carlos Mario Bernal Cuéllar  2220221050 ");
 
-        txtNombre2.setText("Luis Alejandro Sanmiguel Galeano              2220221058");
+        txtNombre2.setText("Mario Daniel Orozco Muñoz  2220201013");
 
         txtIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconAcercaDe.jpg"))); // NOI18N
 

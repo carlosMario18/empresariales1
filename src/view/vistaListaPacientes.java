@@ -76,7 +76,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                    "Id", "Nombre", "Fecha", "Tipo de cita", "Costo"
             }
         ));
         jScrollPane1.setViewportView(tablaListaPacientes);

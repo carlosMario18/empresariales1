@@ -6,15 +6,14 @@ public class CitaGeneral extends CitaMedica {
 
     private String sintomas;
     private String diagnostico;
-    private int edadPaciente;
+    private  int edadPaciente;
 
-    public CitaGeneral(int id, LocalDate fecha, double costo, String sintomas, String diagnostico, int edadPaciente) {
-        super(id, fecha, costo);
+    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String sintomas, String diagnostico, int edadPaciente) {
+        super(numeroIdentificacion, nombrePaciente, fecha, costo);
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
         this.edadPaciente = edadPaciente;
     }
-
     public String getSintomas() {
         return sintomas;
     }
@@ -38,18 +37,8 @@ public class CitaGeneral extends CitaMedica {
     public void setEdadPaciente(int edadPaciente) {
         this.edadPaciente = edadPaciente;
     }
-
     public double calcularCosto() {
         return 0;
     }
 
-    @Override
-    public String toString() {
-        return "CitaGeneral{" +
-                super.toString() + " " +
-                "sintomas='" + sintomas + '\'' +
-                ", diagnostico='" + diagnostico + '\'' +
-                ", edadPaciente=" + edadPaciente +
-                '}';
-    }
 }
