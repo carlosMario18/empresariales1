@@ -4,13 +4,13 @@
  */
 package view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
  * @author alejandrosanmiguel
  */
-public class vistaIngreso extends javax.swing.JFrame {
+public class vistaIngreso extends JFrame {
 
     /**
      * Creates new form vistaIngreso
@@ -36,15 +36,15 @@ public class vistaIngreso extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNumeroIdentificacion = new javax.swing.JTextArea();
         textNombre = new javax.swing.JTextArea();
-        txtFecha = new javax.swing.JTextArea();
+        txtCosto = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         boxTipoCita = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtMotivo = new javax.swing.JTextArea();
         btnGuardar = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         btnAcercaDe = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtFecha = new javax.swing.JTextArea();
         panelCabeza = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -73,8 +73,8 @@ public class vistaIngreso extends javax.swing.JFrame {
         textNombre.setColumns(20);
         textNombre.setRows(5);
 
-        txtFecha.setColumns(20);
-        txtFecha.setRows(5);
+        txtCosto.setColumns(20);
+        txtCosto.setRows(5);
 
         jLabel5.setText("Tipo de cita:");
 
@@ -90,10 +90,7 @@ public class vistaIngreso extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Motivo: ");
-
-        txtMotivo.setColumns(20);
-        txtMotivo.setRows(5);
+        jLabel6.setText("Costo: ");
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +115,9 @@ public class vistaIngreso extends javax.swing.JFrame {
 
         btnCancelar.setText("Cancelar");
 
+        txtFecha.setColumns(20);
+        txtFecha.setRows(5);
+
         javax.swing.GroupLayout panelCuerpoLayout = new javax.swing.GroupLayout(panelCuerpo);
         panelCuerpo.setLayout(panelCuerpoLayout);
         panelCuerpoLayout.setHorizontalGroup(
@@ -137,11 +137,11 @@ public class vistaIngreso extends javax.swing.JFrame {
                                 .addComponent(jLabel6))
                             .addGap(71, 71, 71)
                             .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                .addComponent(txtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                                 .addComponent(txtNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                 .addComponent(textNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                                 .addComponent(boxTipoCita, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)))
                         .addGroup(panelCuerpoLayout.createSequentialGroup()
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(47, 47, 47)
@@ -163,10 +163,10 @@ public class vistaIngreso extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(boxTipoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,9 +175,9 @@ public class vistaIngreso extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jLabel6))
                     .addGroup(panelCuerpoLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(58, 58, 58)
                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar)
                     .addComponent(btnHistorial)
@@ -189,7 +189,7 @@ public class vistaIngreso extends javax.swing.JFrame {
 
         panelCabeza.setBackground(new java.awt.Color(248, 245, 230));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconHospital.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconHospital.jpeg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -395,8 +395,8 @@ public class vistaIngreso extends javax.swing.JFrame {
     private javax.swing.JPanel panelCuerpo;
     private javax.swing.JPanel panelPrincipalVistaIngreso;
     private javax.swing.JTextArea textNombre;
+    private javax.swing.JTextArea txtCosto;
     private javax.swing.JTextArea txtFecha;
-    private javax.swing.JTextArea txtMotivo;
     private javax.swing.JTextArea txtNumeroIdentificacion;
     // End of variables declaration//GEN-END:variables
 }

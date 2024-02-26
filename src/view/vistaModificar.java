@@ -4,13 +4,13 @@
  */
 package view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
  * @author alejandrosanmiguel
  */
-public class vistaModificar extends javax.swing.JFrame {
+public class vistaModificar extends JFrame {
 
     /**
      * Creates new form vistaHistorial
@@ -43,14 +43,14 @@ public class vistaModificar extends javax.swing.JFrame {
         textNombre = new javax.swing.JTextArea();
         txtFecha = new javax.swing.JTextArea();
         boxTipoCita = new javax.swing.JComboBox<>();
-        txtMotivo = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        txtCosto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelCabeza.setBackground(new java.awt.Color(248, 245, 230));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconPersona.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconPersona.jpeg"))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
@@ -90,7 +90,7 @@ public class vistaModificar extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo de cita:");
 
-        jLabel6.setText("Motivo: ");
+        jLabel6.setText("Costo:");
 
         jLabel4.setText("Fecha: ");
 
@@ -115,15 +115,15 @@ public class vistaModificar extends javax.swing.JFrame {
             }
         });
 
-        txtMotivo.setColumns(20);
-        txtMotivo.setRows(5);
-
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txtCosto.setColumns(20);
+        txtCosto.setRows(5);
 
         javax.swing.GroupLayout panelCuerpoLayout = new javax.swing.GroupLayout(panelCuerpo);
         panelCuerpo.setLayout(panelCuerpoLayout);
@@ -134,7 +134,7 @@ public class vistaModificar extends javax.swing.JFrame {
                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCuerpoLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(txtNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelCuerpoLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,11 +145,11 @@ public class vistaModificar extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                         .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boxTipoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                            .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCuerpoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,10 +178,10 @@ public class vistaModificar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelPrincipalVistaModificarLayout = new javax.swing.GroupLayout(panelPrincipalVistaModificar);
@@ -276,8 +276,8 @@ public class vistaModificar extends javax.swing.JFrame {
     private javax.swing.JPanel panelCuerpo;
     private javax.swing.JPanel panelPrincipalVistaModificar;
     private javax.swing.JTextArea textNombre;
+    private javax.swing.JTextArea txtCosto;
     private javax.swing.JTextArea txtFecha;
-    private javax.swing.JTextArea txtMotivo;
     private javax.swing.JTextArea txtNumeroIdentificacion;
     // End of variables declaration//GEN-END:variables
 }

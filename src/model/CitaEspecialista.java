@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class CitaEspecialista extends CitaMedica {
 
-    private String especialidad;
-    private int consultorio;
-    private String medico;
+    private  String especialidad;
+    private String consultorio;
+    private String nombreMedico;
 
-    public CitaEspecialista(int id, LocalDate fecha, double costo, String especialidad, int consultorio, String medico) {
-        super(id, fecha, costo);
+    public CitaEspecialista(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String especialidad, String consultorio, String nombreMedico) {
+        super(numeroIdentificacion, nombrePaciente, fecha, costo);
         this.especialidad = especialidad;
         this.consultorio = consultorio;
-        this.medico = medico;
+        this.nombreMedico = nombreMedico;
     }
 
     public String getEspecialidad() {
@@ -23,33 +23,24 @@ public class CitaEspecialista extends CitaMedica {
         this.especialidad = especialidad;
     }
 
-    public int getConsultorio() {
+    public String getConsultorio() {
         return consultorio;
     }
 
-    public void setConsultorio(int consultorio) {
+    public void setConsultorio(String consultorio) {
         this.consultorio = consultorio;
     }
 
-    public String getMedico() {
-        return medico;
+    public String getNombreMedico() {
+        return nombreMedico;
     }
 
-    public void setMedico(String medico) {
-        this.medico = medico;
+    public void setNombreMedico(String nombreMedico) {
+        this.nombreMedico = nombreMedico;
     }
 
     public double calcularCosto() {
-        return (getCosto()*1.5);
+        return 0;
     }
 
-    @Override
-    public String toString() {
-        return "CitaEspecialista{" +
-                super.toString() + " " +
-                "especialidad='" + especialidad + '\'' +
-                ", consultorio=" + consultorio +
-                ", medico='" + medico + '\'' +
-                '}';
-    }
 }

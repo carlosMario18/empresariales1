@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.*;
+
 /**
  *
  * @author alejandrosanmiguel
@@ -15,6 +17,7 @@ public class vistaGuardoErroneo extends javax.swing.JFrame {
      */
     public vistaGuardoErroneo() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

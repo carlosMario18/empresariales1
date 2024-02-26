@@ -4,22 +4,32 @@ import java.time.LocalDate;
 
 public abstract class CitaMedica {
 
-    private int id;
-    private LocalDate fecha;
-    private double costo;
+    private String  numeroIdentificacion;
+    private String nombrePaciente;
+    private  LocalDate fecha;
+    private  int costo;
 
-    public CitaMedica(int id, LocalDate fecha, double costo) {
-        this.id = id;
+    public CitaMedica(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo) {
+        this.numeroIdentificacion = numeroIdentificacion;
+        this.nombrePaciente = nombrePaciente;
         this.fecha = fecha;
         this.costo = costo;
     }
 
-    public int getId() {
-        return id;
+    public String getNumeroIdentificacion() {
+        return numeroIdentificacion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNumeroIdentificacion(String numeroIdentificacion) {
+        this.numeroIdentificacion = numeroIdentificacion;
+    }
+
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
     }
 
     public LocalDate getFecha() {
@@ -30,21 +40,15 @@ public abstract class CitaMedica {
         this.fecha = fecha;
     }
 
-    public double getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 
     public abstract double calcularCosto();
-    @Override
-    public String toString() {
-        return "CitaMedica{" +
-                "id=" + id +
-                ", fecha=" + fecha +
-                ", costo=" + costo +
-                '}';
-    }
+
+
 }
