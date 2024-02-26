@@ -40,7 +40,15 @@ public class ControladorCitas {
         return total;
     }
 
-    //Actualizar cita
+    public void modificarCita(CitaMedica citaModificada) {
+        // Buscar la cita original en la lista y reemplazarla con la cita modificada
+        for (int i = 0; i < citas.size(); i++) {
+            if (citas.get(i).getNumeroIdentificacion().equals(citaModificada.getNumeroIdentificacion())) {
+                citas.set(i, citaModificada);
+                break;
+            }
+        }
+    }
 
 }
 

@@ -291,8 +291,8 @@ public class vistaIngreso extends JFrame {
 
 
     private void btnModificarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        vistaModificar vistaModificar = new vistaModificar();
-        vistaModificar.setVisible(true);
+        vistaBuscar vistaBuscar = new vistaBuscar(controlador);
+        vistaBuscar.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAcercaDeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed

@@ -4,7 +4,13 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import model.CitaMedica;
+
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  *
@@ -12,10 +18,18 @@ import javax.swing.*;
  */
 public class vistaModificar extends JFrame {
 
+    private ControladorCitas controlador;
+    private CitaMedica citaModificar;
+    private String tipoCita;
+    private vistaListaPacientes listaPacientesFrame;
     /**
      * Creates new form vistaHistorial
      */
-    public vistaModificar() {
+    public vistaModificar( ControladorCitas controlador, CitaMedica citaModificar, String tipoCita, vistaListaPacientes listaPacientesFrame) {
+        this.controlador = controlador;
+        this.citaModificar = citaModificar;
+        this.tipoCita = tipoCita;
+        this.listaPacientesFrame = listaPacientesFrame;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -43,8 +57,9 @@ public class vistaModificar extends JFrame {
         textNombre = new javax.swing.JTextArea();
         txtFecha = new javax.swing.JTextArea();
         boxTipoCita = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         txtCosto = new javax.swing.JTextArea();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,15 +130,22 @@ public class vistaModificar extends JFrame {
             }
         });
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
         txtCosto.setColumns(20);
         txtCosto.setRows(5);
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCuerpoLayout = new javax.swing.GroupLayout(panelCuerpo);
         panelCuerpo.setLayout(panelCuerpoLayout);
@@ -153,8 +175,10 @@ public class vistaModificar extends JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCuerpoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(96, 96, 96))
+                .addComponent(btnGuardar)
+                .addGap(31, 31, 31)
+                .addComponent(btnCancelar)
+                .addGap(24, 24, 24))
         );
         panelCuerpoLayout.setVerticalGroup(
             panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +204,9 @@ public class vistaModificar extends JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -222,9 +248,52 @@ public class vistaModificar extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoCitaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String nuevoNombre = textNombre.getText();
+        String nuevaFecha =txtFecha.getText();
+        String nuevoTipoCita = (String) boxTipoCita.getSelectedItem();
+        String nuevoCosto = txtCosto.getText();
+
+        if (nuevoNombre.isEmpty() || nuevaFecha.isEmpty() || nuevoTipoCita.isEmpty() || nuevoCosto.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int costo;
+        try {
+            costo = Integer.parseInt(nuevoCosto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: El costo debe ser un número entero válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        LocalDate fecha;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        try {
+            fecha = LocalDate.parse(nuevaFecha, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Error: Formato de fecha inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Modificar la cita en el ControladorCitas
+        citaModificar.setNombrePaciente(nuevoNombre);
+        citaModificar.setFecha(fecha);
+        citaModificar.setTipoCita(nuevoTipoCita);
+        citaModificar.setCosto(costo);
+        controlador.modificarCita(citaModificar);
+
+        // Actualizar la tabla en vistaListaPaciente
+        listaPacientesFrame.actualizarTablaCitas2();
+
+        // Cerrar la ventana de vistaModificar
+        dispose();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtNumeroIdentificacion.setText("");
+        textNombre.setText("");
+        txtFecha.setText("");
+        txtCosto.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,14 +326,25 @@ public class vistaModificar extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaModificar().setVisible(true);
+                ControladorCitas controlador = new ControladorCitas();
+                CitaMedica citaModificar = new CitaMedica() {
+                    @Override
+                    public double calcularCosto() {
+                        return 0;
+                    }
+                };
+                String tipoCita = ""; // Define el tipo de cita adecuado
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+                vistaModificar vistaModificar = new vistaModificar(controlador, citaModificar, tipoCita, listaPacientesFrame);
+                vistaModificar.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipoCita;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
