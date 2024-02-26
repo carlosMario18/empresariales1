@@ -4,6 +4,9 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import model.CitaMedica;
+
 import javax.swing.JFrame;
 
 /**
@@ -12,10 +15,12 @@ import javax.swing.JFrame;
  */
 public class vistaEliminar extends javax.swing.JFrame {
 
+    private ControladorCitas controlador;
     /**
      * Creates new form vistaEliminar
      */
-    public vistaEliminar() {
+    public vistaEliminar(ControladorCitas controlador) {
+        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -146,7 +151,24 @@ public class vistaEliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        // Obtener el número de identificación de la cita a eliminar
+        String idCitaEliminar = txtNumeroIdentificacion3.getText(); // Ajusta el método para obtener el número de identificación desde tu JTextField u otro componente
+
+        // Comunicarse con el controlador para eliminar la cita
+        CitaMedica citaEliminar = controlador.buscarCitaPorId(idCitaEliminar);
+
+        // Verificar si se eliminó correctamente
+        if (citaEliminar != null) {
+            controlador.eliminarCita(citaEliminar);
+            vistaEliminarExito exito = new vistaEliminarExito();
+            exito.setVisible(true);
+        } else {
+            vistaEliminarFallido fallido = new vistaEliminarFallido();
+            fallido.setVisible(true);
+        }
+
+        // Cerrar el JFrame vistaEliminar
+        dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -179,7 +201,13 @@ public class vistaEliminar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaEliminar().setVisible(true);
+                ControladorCitas controlador = new ControladorCitas();
+
+                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
+                vistaEliminar vistaEliminar = new vistaEliminar(controlador);
+
+                // Hacer visible el frame de vistaListaPacientes
+                vistaEliminar.setVisible(true);
             }
         });
     }

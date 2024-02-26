@@ -244,15 +244,17 @@ public class vistaIngreso extends JFrame {
         }
 
         if (tipoCita.equals("Medico General")) {
-            CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, "", "", "", 0);
+            CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
             controlador.insertarCita(nuevaCita);
             listaPacientesFrame.actualizarTablaCitas();
             vistaGuardarConExito exito = new vistaGuardarConExito();
             exito.setVisible(true);
 
         }else if (tipoCita.equals("Medico Especialista")){
-            CitaGeneral nuevaCita = new CitaGeneral(id, nombre, fecha, costo, "", "", "", 0);
+            CitaGeneral nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, "", "", 0);
             controlador.insertarCita(nuevaCita);
+            vistaGuardarConExito exito = new vistaGuardarConExito();
+            exito.setVisible(true);
         }
         else {
             // Manejar otros casos
@@ -300,7 +302,7 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnEliminarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        vistaEliminar vistaEliminar = new vistaEliminar();
+        vistaEliminar vistaEliminar = new vistaEliminar(controlador);
         vistaEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
