@@ -25,6 +25,7 @@ public class vistaCostoTotal extends JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
+        mostrarTotales();
     }
 
     public void actualizarTablaCitas() {
@@ -46,6 +47,18 @@ public class vistaCostoTotal extends JFrame {
         }
 
     }
+
+    private void mostrarTotales() {
+        double totalGeneral = controlador.calcularCostoTotal("Medico General");
+        double totalEspecialista = controlador.calcularCostoTotal("Medico Especialista");
+        double totalGeneralEspecialista = totalGeneral + totalEspecialista;
+
+        // Mostrar los totales en los JTextArea
+        txtPaneCostoGeneral.setText(String.valueOf(totalGeneral));
+        textPaneCostoEspecialista.setText(String.valueOf(totalEspecialista));
+        txtPaneCostoTotal.setText(String.valueOf(totalGeneralEspecialista));
+    }
+
 
 
     /**

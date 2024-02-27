@@ -32,13 +32,19 @@ public class ControladorCitas {
         return citas;
     }
 
-    public double calcularCostoTotal() {
-        double total = 0;
+    public double calcularCostoTotal(String tipoCita) {
+        double costoTotal = 0;
         for (CitaMedica cita : citas) {
-            total = total + cita.calcularCosto();
+            if (tipoCita.equals("Medico General")) {
+                costoTotal += cita.calcularCosto();
+            } else if (tipoCita.equals("Medico Especialista")) {
+                costoTotal += cita.calcularCosto();
+            }
         }
-        return total;
+        return costoTotal;
     }
+
+
 
     public boolean idExistente(String numeroIdentificacion) {
         for (CitaMedica cita : citas) {
