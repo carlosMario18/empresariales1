@@ -4,39 +4,33 @@ import java.time.LocalDate;
 
 public class CitaGeneral extends CitaMedica {
 
-    private String sintomas;
-    private String diagnostico;
-    private  int edadPaciente;
+    private String nombreGeneralista;
+    private String observacion;
 
-    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, double costo, String tipoCita, String sintomas, String diagnostico, int edadPaciente) {
+
+    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, double costo, String tipoCita, String nombreGeneralista, String observacion) {
         super(numeroIdentificacion, nombrePaciente, fecha, costo, tipoCita);
-        this.sintomas = sintomas;
-        this.diagnostico = diagnostico;
-        this.edadPaciente = edadPaciente;
-    }
-    public String getSintomas() {
-        return sintomas;
+        this.nombreGeneralista = nombreGeneralista;
+        this.observacion = observacion;
+
     }
 
-    public void setSintomas(String sintomas) {
-        this.sintomas = sintomas;
+    public String getNombreGeneralista() {
+        return nombreGeneralista;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public void setNombreGeneralista(String nombreGeneralista) {
+        this.nombreGeneralista = nombreGeneralista;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public String getObservacion() {
+        return observacion;
     }
 
-    public int getEdadPaciente() {
-        return edadPaciente;
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 
-    public void setEdadPaciente(int edadPaciente) {
-        this.edadPaciente = edadPaciente;
-    }
     public double calcularCosto() {
         return getCosto();
     }
