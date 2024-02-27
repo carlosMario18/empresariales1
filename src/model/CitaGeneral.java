@@ -8,7 +8,7 @@ public class CitaGeneral extends CitaMedica {
     private String diagnostico;
     private  int edadPaciente;
 
-    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String tipoCita, String sintomas, String diagnostico, int edadPaciente) {
+    public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, double costo, String tipoCita, String sintomas, String diagnostico, int edadPaciente) {
         super(numeroIdentificacion, nombrePaciente, fecha, costo, tipoCita);
         this.sintomas = sintomas;
         this.diagnostico = diagnostico;
@@ -38,7 +38,7 @@ public class CitaGeneral extends CitaMedica {
         this.edadPaciente = edadPaciente;
     }
     public double calcularCosto() {
-        return 0;
+        return getCosto();
     }
 
     public boolean idExistente(String numeroIdentificacion) {
