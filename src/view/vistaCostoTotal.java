@@ -18,7 +18,6 @@ import java.util.List;
 public class vistaCostoTotal extends JFrame {
 
     private ControladorCitas controlador;
-    private DefaultTableModel modeloTabla;
 
     public vistaCostoTotal(ControladorCitas controlador) {
         this.controlador = controlador;
@@ -49,15 +48,15 @@ public class vistaCostoTotal extends JFrame {
     }
 
     private void mostrarTotales() {
-        double totalGeneral = controlador.calcularCostoTotal("Medico General");
-        double totalEspecialista = controlador.calcularCostoTotal("Medico Especialista");
-        double totalGeneralEspecialista = totalGeneral + totalEspecialista;
+        // Calcular el total general y especialista directamente en la misma línea
+        double totalGeneralEspecialista = controlador.calcularCostoTotal("Medico General") + controlador.calcularCostoTotal("Medico Especialista");
 
         // Mostrar los totales en los JTextArea
-        txtPaneCostoGeneral.setText(String.valueOf(totalGeneral));
-        textPaneCostoEspecialista.setText(String.valueOf(totalEspecialista));
+        txtPaneCostoGeneral.setText(String.valueOf(controlador.calcularCostoTotal("Medico General")));
+        textPaneCostoEspecialista.setText(String.valueOf(controlador.calcularCostoTotal("Medico Especialista")));
         txtPaneCostoTotal.setText(String.valueOf(totalGeneralEspecialista));
     }
+
 
 
 
@@ -259,7 +258,8 @@ public class vistaCostoTotal extends JFrame {
 
                 // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
-
+                vistaCostoTotal vistaCostoTotal = new vistaCostoTotal(controlador);
+                vistaCostoTotal.setVisible(true);
                 // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
             }

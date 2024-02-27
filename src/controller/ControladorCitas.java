@@ -1,5 +1,6 @@
 package controller;
 
+import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
 
@@ -33,16 +34,18 @@ public class ControladorCitas {
     }
 
     public double calcularCostoTotal(String tipoCita) {
-        double costoTotal = 0;
+        double costoTotal =0;
         for (CitaMedica cita : citas) {
-            if (tipoCita.equals("Medico General")) {
+            if (tipoCita.equals("Medico General") && cita instanceof CitaGeneral) {
                 costoTotal += cita.calcularCosto();
-            } else if (tipoCita.equals("Medico Especialista")) {
+            } else if (tipoCita.equals("Medico Especialista") && cita instanceof CitaEspecialista) {
                 costoTotal += cita.calcularCosto();
             }
         }
         return costoTotal;
     }
+
+
 
 
 

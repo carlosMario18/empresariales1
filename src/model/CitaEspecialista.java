@@ -8,7 +8,7 @@ public class CitaEspecialista extends CitaMedica {
     private String consultorio;
     private String nombreMedico;
 
-    public CitaEspecialista(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, int costo, String tipoCita, String especialidad, String consultorio, String nombreMedico) {
+    public CitaEspecialista(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, double costo, String tipoCita, String especialidad, String consultorio, String nombreMedico) {
         super(numeroIdentificacion, nombrePaciente, fecha, costo, tipoCita);
         this.especialidad = especialidad;
         this.consultorio = consultorio;
@@ -40,7 +40,7 @@ public class CitaEspecialista extends CitaMedica {
     }
 
     public double calcularCosto() {
-        return 0;
+        return getCosto();
     }
 
     public boolean idExistente(String numeroIdentificacion) {
