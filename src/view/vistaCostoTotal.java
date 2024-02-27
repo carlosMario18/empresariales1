@@ -4,7 +4,12 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import model.CitaMedica;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
@@ -12,13 +17,36 @@ import javax.swing.*;
  */
 public class vistaCostoTotal extends JFrame {
 
-    /**
-     * Creates new form vistaHistorialPaciente
-     */
-    public vistaCostoTotal() {
+    private ControladorCitas controlador;
+    private DefaultTableModel modeloTabla;
+
+    public vistaCostoTotal(ControladorCitas controlador) {
+        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        actualizarTablaCitas();
     }
+
+    public void actualizarTablaCitas() {
+
+        // Obtener las citas del controlador
+        List<CitaMedica> citas = controlador.listarCitas();
+        // Limpiar la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tablaHistorialPaciente.getModel();
+        modelo.setRowCount(0);
+        // Llenar la tabla con las nuevas citas
+        for (CitaMedica cita : citas) {
+            Object[] fila = new Object[5];
+            fila[0] = cita.getNumeroIdentificacion();
+            fila[1] = cita.getNombrePaciente();
+            fila[2] = cita.getFecha();
+            fila[3] = cita.getTipoCita();
+            fila[4] = cita.getCosto();
+            modelo.addRow(fila);
+        }
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,16 +109,17 @@ public class vistaCostoTotal extends JFrame {
         );
 
         tablaHistorialPaciente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "N.Identificación,","Nombre", "Tipo Cita", "Costo"
-            }
+                new Object [][] {
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
+                new String [] {
+                        "N.Identificación", "Nombre", "Fecha", "Tipo Cita", "Costo"
+                }
         ));
+
         jScrollPane1.setViewportView(tablaHistorialPaciente);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -210,8 +239,16 @@ public class vistaCostoTotal extends JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new vistaCostoTotal().setVisible(true);
+                // Crear una instancia de ControladorCitas
+                ControladorCitas controlador = new ControladorCitas();
+
+                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+
+                // Hacer visible el frame de vistaListaPacientes
+                listaPacientesFrame.setVisible(true);
             }
         });
     }

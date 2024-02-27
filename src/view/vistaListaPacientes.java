@@ -27,6 +27,10 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
     }
+
+    public DefaultTableModel getModeloTabla() {
+        return (DefaultTableModel) tablaListaPacientes.getModel();
+    }
     public void actualizarTablaCitas() {
 
         // Obtener las citas del controlador
@@ -43,7 +47,9 @@ public class vistaListaPacientes extends javax.swing.JFrame {
             fila[3] = cita.getTipoCita();
             fila[4] = cita.getCosto();
             modelo.addRow(fila);
+
         }
+
     }
 
     public void actualizarTablaCitas2() {

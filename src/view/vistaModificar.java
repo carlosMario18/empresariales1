@@ -282,7 +282,7 @@ public class vistaModificar extends JFrame {
         controlador.modificarCita(citaModificar);
 
         // Actualizar la tabla en vistaListaPaciente
-        listaPacientesFrame.actualizarTablaCitas2();
+        listaPacientesFrame.actualizarTablaCitas();
 
         // Cerrar la ventana de vistaModificar
         dispose();

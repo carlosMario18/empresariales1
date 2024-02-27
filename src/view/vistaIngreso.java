@@ -9,6 +9,7 @@ import model.CitaGeneral;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -391,7 +392,8 @@ public class vistaIngreso extends JFrame {
 
 
     private void btnCostoTotalActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        vistaCostoTotal vistaCostoTotal = new vistaCostoTotal();
+
+        vistaCostoTotal vistaCostoTotal = new vistaCostoTotal(controlador);
         vistaCostoTotal.setVisible(true);
 
 
