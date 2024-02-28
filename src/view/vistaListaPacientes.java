@@ -5,6 +5,8 @@
 package view;
 
 import controller.ControladorCitas;
+import model.CitaEspecialista;
+import model.CitaGeneral;
 import model.CitaMedica;
 
 import javax.swing.*;
@@ -32,30 +34,70 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         actualizarTablaCitas();
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
             public void valueChanged(ListSelectionEvent event) {
+
                 if (!event.getValueIsAdjusting()) {
+
                     int filaSeleccionada = tablaListaPacientes.getSelectedRow();
-                    List<CitaMedica> listaCitas = controlador.getCitas();
+                    List<CitaMedica> listaCitas = controlador.listarCitas();
 
                     if (filaSeleccionada != -1) {
-                        String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
-                        mensaje += "<br>";
-                        String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
-
-                        // Recorrer la lista de citas
-                        for (CitaMedica cita : listaCitas) {
-                            mensaje += "<b>" + etiquetas[0] + ":</b> " + cita.getNumeroIdentificacion() + "<br>";
-                            mensaje += "<b>" + etiquetas[1] + ":</b> " + cita.getNombrePaciente() + "<br>";
-                            mensaje += "<b>" + etiquetas[2] + ":</b> " + cita.getFecha() + "<br>";
-                            mensaje += "<b>" + etiquetas[3] + ":</b> " + cita.getTipoCita() + "<br>";
-                            mensaje += "<b>" + etiquetas[4] + ":</b> " + cita.getCosto() + "<br>";
-                            mensaje += "<br>";
+                        Object[] filaDatos = new Object[modelo.getColumnCount()];
+                        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
+                        for (int i = 0; i < modelo.getColumnCount(); i++) {
+                            filaDatos[i] = modelo.getValueAt(filaSeleccionada, i);
                         }
 
-                        mensaje += "</html>";
+                        CitaGeneral citaGeneral = new CitaGeneral();
+                        CitaEspecialista citaEspecialista = new CitaEspecialista();
 
-                        // Mostrar los datos en un mensaje
-                        JOptionPane.showMessageDialog(null, mensaje);
+
+                        // Buscar la cita correspondiente en la lista
+                        CitaMedica citaSeleccionada = null;
+                        for (CitaMedica cita : listaCitas) {
+                            if (cita.getNumeroIdentificacion().equals(filaDatos[0])) {
+                                citaSeleccionada = cita;
+                                break;
+                            }
+                        }
+
+                        if (citaSeleccionada != null) {
+                            // Resto del código...
+
+                            // Verificar el tipo de cita y establecer la referencia correspondiente
+                            if (citaSeleccionada instanceof CitaGeneral) {
+                                citaGeneral = (CitaGeneral) citaSeleccionada;
+                            } else if (citaSeleccionada instanceof CitaEspecialista) {
+                                citaEspecialista = (CitaEspecialista) citaSeleccionada;
+                            }
+
+                            if (citaSeleccionada != null) {
+                                String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
+                                mensaje += "<br>";
+                                String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
+
+                                for (int i = 0; i < modelo.getColumnCount(); i++) {
+                                    mensaje += "<b>" + etiquetas[i] + ":</b> " + filaDatos[i] + "<br>";
+                                }
+
+                                if (citaSeleccionada instanceof CitaGeneral) {
+                                    mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
+                                    mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
+                                } else if (citaSeleccionada instanceof CitaEspecialista) {
+                                    mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
+                                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
+                                }
+
+                                mensaje += "<br>";
+                                mensaje += "</html>";
+
+                                // Mostrar los datos en un mensaje
+                                JOptionPane.showMessageDialog(null, mensaje);
+                            }
+                        }
+
                     }
 
                 }

@@ -40,6 +40,7 @@ public class vistaIngreso extends JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        desactivarCampos();
     }
 
     /**
@@ -315,7 +316,7 @@ public class vistaIngreso extends JFrame {
             }
         });
 
-        btnListaPacientes.setText("Lista de pacientes");
+        btnListaPacientes.setText("Lista de citas");
         btnListaPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaPacientesActionPerformed(evt);
@@ -449,7 +450,7 @@ public class vistaIngreso extends JFrame {
             } else if (tipoCita.equals("Medico Especialista")) {
                 String especialidad = txtEspecialidad.getText();
                 String nomEspecialista = txtNomEspecialidad.getText();
-                CitaEspecialista nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, tipoCita, especialidad, nomEspecialista);
+                CitaMedica nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, tipoCita, especialidad, nomEspecialista);
                 controlador.insertarCita(nuevaCita);
                 vistaGuardarConExito exito = new vistaGuardarConExito();
                 exito.setVisible(true);
@@ -467,15 +468,26 @@ public class vistaIngreso extends JFrame {
         vistaCostoTotal.setVisible(true);
 
 
+
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void boxTipoCitaItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_boxTipoCitaItemStateChanged
-        // TODO add your handling code here:
 
 
     }//GEN-LAST:event_boxTipoCitaItemStateChanged
 
+    private void desactivarCampos() {
+        labelNomGeneralista.setEnabled(false);
+        labelObservaciones.setEnabled(false);
+        labelEspecialidad.setEnabled(false);
+        labelNomEspecialista.setEnabled(false);
+        txtNomGeneralista.setEnabled(false);
+        txtObservaciones.setEnabled(false);
+        txtEspecialidad.setEnabled(false);
+        txtNomEspecialidad.setEnabled(false);
+    }
     private void boxTipoCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoCitaActionPerformed
+
 
         String seleccion = (String) boxTipoCita.getSelectedItem();
         if (seleccion.equals("Medico General")) {
@@ -496,16 +508,8 @@ public class vistaIngreso extends JFrame {
             txtObservaciones.setEnabled(false);
             txtEspecialidad.setEnabled(true);
             txtNomEspecialidad.setEnabled(true);
-        } else if(seleccion.equals("Seleccione una opción")){
-
-            labelNomGeneralista.setEnabled(false);
-            labelObservaciones.setEnabled(false);
-            labelEspecialidad.setEnabled(false);
-            labelNomEspecialista.setEnabled(false);
-            txtNomGeneralista.setEnabled(false);
-            txtObservaciones.setEnabled(false);
-            txtEspecialidad.setEnabled(false);
-            txtNomEspecialidad.setEnabled(false);
+        }else if (seleccion.equals("Seleccione una opción")){
+            desactivarCampos();
         }
     }//GEN-LAST:event_boxTipoCitaActionPerformed
 
@@ -540,6 +544,10 @@ public class vistaIngreso extends JFrame {
         textNombre.setText("");
         txtFecha.setText("");
         txtCosto.setText("");
+        txtNomEspecialidad.setText("");
+        txtEspecialidad.setText("");
+        txtNomGeneralista.setText("");
+        txtObservaciones.setText("");
     }
     /**
      * @param args the command line arguments
