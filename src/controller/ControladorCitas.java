@@ -11,6 +11,8 @@ public class ControladorCitas {
 
     private List<CitaMedica> citas = new ArrayList<>();
 
+
+
     public void insertarCita(CitaMedica cita) {
         citas.add(cita);
     }
@@ -66,6 +68,10 @@ public class ControladorCitas {
                 break;
             }
         }
+    }
+
+    public List<CitaMedica> getCitas() {
+        return citas;
     }
 
 }

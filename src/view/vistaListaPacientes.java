@@ -21,6 +21,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
     private ControladorCitas controlador;
 
+
     /**
      * Creates new form vistaListaPacientes
      */
@@ -32,22 +33,35 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
-                if (!event.getValueIsAdjusting()) { // Asegurarse de que la selección se haya completado
-                    int filaSeleccionada = tablaListaPacientes.getSelectedRow(); // Obtener la fila seleccionada
+                if (!event.getValueIsAdjusting()) {
+                    int filaSeleccionada = tablaListaPacientes.getSelectedRow();
+                    List<CitaMedica> listaCitas = controlador.getCitas();
 
-                    if (filaSeleccionada != -1) { // Verificar si se ha seleccionado una fila válida
-                        // Obtener los datos de la fila seleccionada
-                        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
-                        Object[] filaDatos = new Object[modelo.getColumnCount()];
-                        for (int i = 0; i < modelo.getColumnCount(); i++) {
-                            filaDatos[i] = modelo.getValueAt(filaSeleccionada, i);
+                    if (filaSeleccionada != -1) {
+                        String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
+                        mensaje += "<br>";
+                        String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
+
+                        // Recorrer la lista de citas
+                        for (CitaMedica cita : listaCitas) {
+                            mensaje += "<b>" + etiquetas[0] + ":</b> " + cita.getNumeroIdentificacion() + "<br>";
+                            mensaje += "<b>" + etiquetas[1] + ":</b> " + cita.getNombrePaciente() + "<br>";
+                            mensaje += "<b>" + etiquetas[2] + ":</b> " + cita.getFecha() + "<br>";
+                            mensaje += "<b>" + etiquetas[3] + ":</b> " + cita.getTipoCita() + "<br>";
+                            mensaje += "<b>" + etiquetas[4] + ":</b> " + cita.getCosto() + "<br>";
+                            mensaje += "<br>";
                         }
 
+                        mensaje += "</html>";
+
                         // Mostrar los datos en un mensaje
-                        JOptionPane.showMessageDialog(null, "Datos de la fila seleccionada:\n" + filaDatosToString(filaDatos));
+                        JOptionPane.showMessageDialog(null, mensaje);
                     }
+
                 }
             }
+
+
         });
     }
 
