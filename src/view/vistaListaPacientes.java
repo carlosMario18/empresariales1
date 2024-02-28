@@ -6,7 +6,10 @@ package view;
 
 import controller.ControladorCitas;
 import model.CitaMedica;
-import javax.swing.JFrame;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -26,6 +29,34 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
+
+        tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) { // Asegurarse de que la selección se haya completado
+                    int filaSeleccionada = tablaListaPacientes.getSelectedRow(); // Obtener la fila seleccionada
+
+                    if (filaSeleccionada != -1) { // Verificar si se ha seleccionado una fila válida
+                        // Obtener los datos de la fila seleccionada
+                        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
+                        Object[] filaDatos = new Object[modelo.getColumnCount()];
+                        for (int i = 0; i < modelo.getColumnCount(); i++) {
+                            filaDatos[i] = modelo.getValueAt(filaSeleccionada, i);
+                        }
+
+                        // Mostrar los datos en un mensaje
+                        JOptionPane.showMessageDialog(null, "Datos de la fila seleccionada:\n" + filaDatosToString(filaDatos));
+                    }
+                }
+            }
+        });
+    }
+
+    private static String filaDatosToString(Object[] filaDatos) {
+        StringBuilder sb = new StringBuilder();
+        for (Object dato : filaDatos) {
+            sb.append(dato).append("\n");
+        }
+        return sb.toString();
     }
 
     public DefaultTableModel getModeloTabla() {
