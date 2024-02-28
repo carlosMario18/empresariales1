@@ -21,6 +21,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
     private ControladorCitas controlador;
 
+
     /**
      * Creates new form vistaListaPacientes
      */
@@ -34,17 +35,20 @@ public class vistaListaPacientes extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent event) {
                 if (!event.getValueIsAdjusting()) {
                     int filaSeleccionada = tablaListaPacientes.getSelectedRow();
+                    List<CitaMedica> listaCitas = controlador.getCitas();
 
                     if (filaSeleccionada != -1) {
-
-                        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
-                        Object[] filaDatos = new Object[modelo.getColumnCount()];
                         String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
                         mensaje += "<br>";
                         String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
 
-                        for (int i = 0; i < modelo.getColumnCount(); i++) {
-                            mensaje += "<b>" + etiquetas[i] + ":</b> " + modelo.getValueAt(filaSeleccionada, i) + "<br>";
+                        // Recorrer la lista de citas
+                        for (CitaMedica cita : listaCitas) {
+                            mensaje += "<b>" + etiquetas[0] + ":</b> " + cita.getNumeroIdentificacion() + "<br>";
+                            mensaje += "<b>" + etiquetas[1] + ":</b> " + cita.getNombrePaciente() + "<br>";
+                            mensaje += "<b>" + etiquetas[2] + ":</b> " + cita.getFecha() + "<br>";
+                            mensaje += "<b>" + etiquetas[3] + ":</b> " + cita.getTipoCita() + "<br>";
+                            mensaje += "<b>" + etiquetas[4] + ":</b> " + cita.getCosto() + "<br>";
                             mensaje += "<br>";
                         }
 
@@ -53,6 +57,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                         // Mostrar los datos en un mensaje
                         JOptionPane.showMessageDialog(null, mensaje);
                     }
+
                 }
             }
 
