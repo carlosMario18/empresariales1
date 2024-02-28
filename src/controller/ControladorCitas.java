@@ -11,8 +11,6 @@ public class ControladorCitas {
 
     private List<CitaMedica> citas = new ArrayList<>();
 
-
-
     public void insertarCita(CitaMedica cita) {
         citas.add(cita);
     }
@@ -21,7 +19,6 @@ public class ControladorCitas {
         citas.remove(cita);
     }
 
-    // Buscar cita médica por su id
     public CitaMedica buscarCitaPorId(String id) {
         for (CitaMedica cita : citas) {
             if (cita.getNumeroIdentificacion().equals(id)) {
@@ -47,21 +44,16 @@ public class ControladorCitas {
         return costoTotal;
     }
 
-
-
-
-
     public boolean idExistente(String numeroIdentificacion) {
         for (CitaMedica cita : citas) {
             if (cita.getNumeroIdentificacion().equals(numeroIdentificacion)) {
-                return true; // Si se encuentra una cita con el mismo ID
+                return true;
             }
         }
         return false;
     }
 
     public void modificarCita(CitaMedica citaModificada) {
-        // Buscar la cita original en la lista y reemplazarla con la cita modificada
         for (int i = 0; i < citas.size(); i++) {
             if (citas.get(i).getNumeroIdentificacion().equals(citaModificada.getNumeroIdentificacion())) {
                 citas.set(i, citaModificada);
