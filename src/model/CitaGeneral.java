@@ -15,6 +15,9 @@ public class CitaGeneral extends CitaMedica {
 
     }
 
+    public CitaGeneral( ){
+    }
+
     public String getNombreGeneralista() {
         return nombreGeneralista;
     }

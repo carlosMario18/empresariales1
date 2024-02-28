@@ -14,6 +14,9 @@ public class CitaEspecialista extends CitaMedica {
         this.nombreEspecialista = nombreEspecialista;
     }
 
+    public CitaEspecialista() {
+    }
+
     public String getEspecialidad() {
         return especialidad;
     }
