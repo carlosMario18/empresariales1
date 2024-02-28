@@ -32,22 +32,31 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
-                if (!event.getValueIsAdjusting()) { // Asegurarse de que la selección se haya completado
-                    int filaSeleccionada = tablaListaPacientes.getSelectedRow(); // Obtener la fila seleccionada
+                if (!event.getValueIsAdjusting()) {
+                    int filaSeleccionada = tablaListaPacientes.getSelectedRow();
 
-                    if (filaSeleccionada != -1) { // Verificar si se ha seleccionado una fila válida
-                        // Obtener los datos de la fila seleccionada
+                    if (filaSeleccionada != -1) {
+
                         DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
                         Object[] filaDatos = new Object[modelo.getColumnCount()];
+                        String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
+                        mensaje += "<br>";
+                        String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
+
                         for (int i = 0; i < modelo.getColumnCount(); i++) {
-                            filaDatos[i] = modelo.getValueAt(filaSeleccionada, i);
+                            mensaje += "<b>" + etiquetas[i] + ":</b> " + modelo.getValueAt(filaSeleccionada, i) + "<br>";
+                            mensaje += "<br>";
                         }
 
+                        mensaje += "</html>";
+
                         // Mostrar los datos en un mensaje
-                        JOptionPane.showMessageDialog(null, "Datos de la fila seleccionada:\n" + filaDatosToString(filaDatos));
+                        JOptionPane.showMessageDialog(null, mensaje);
                     }
                 }
             }
+
+
         });
     }
 
