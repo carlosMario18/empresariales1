@@ -32,12 +32,18 @@ public class ControladorCitas {
         return citas;
     }
 
-    public double calcularCostoTotal(String tipoCita) {
+    public double calcularCostoTotal() {
         double costoTotal =0;
         for (CitaMedica cita : citas) {
-            if (tipoCita.equals("Medico General") && cita instanceof CitaGeneral) {
-                costoTotal += cita.calcularCosto();
-            } else if (tipoCita.equals("Medico Especialista") && cita instanceof CitaEspecialista) {
+            costoTotal += cita.calcularCosto();
+        }
+        return costoTotal;
+    }
+
+    public double calcularCostoTotalPorTipo(String tipoCita) {
+        double costoTotal = 0;
+        for (CitaMedica cita : citas) {
+            if (cita.getTipoCita().equals(tipoCita)) {
                 costoTotal += cita.calcularCosto();
             }
         }
