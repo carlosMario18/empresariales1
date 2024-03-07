@@ -157,6 +157,59 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         }
     }
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = txtNumeroIdentificacion.getText();
+
+        // Verificar si el ID existe en la tabla
+        boolean idExiste = controlador.idExistente(id);
+        CitaGeneral citaGeneral = new CitaGeneral();
+        CitaEspecialista citaEspecialista = new CitaEspecialista();
+
+        if (idExiste) {
+            // Buscar la cita correspondiente al ID
+            CitaMedica citaSeleccionada = controlador.buscarCitaPorId(id);
+
+            // Verificar si se encontró la cita
+            if (citaSeleccionada != null) {
+                String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
+                mensaje += "<br>";
+                mensaje += "<b>Número de Identificación: </b>" + citaSeleccionada.getNumeroIdentificacion() + "<br>";
+                mensaje += "<b>Nombre del Paciente: </b>" + citaSeleccionada.getNombrePaciente() + "<br>";
+                mensaje += "<b>Fecha: </b>" + citaSeleccionada.getFecha() + "<br>";
+                mensaje += "<b>Tipo de cita: </b>" + citaSeleccionada.getTipoCita() + "<br>";
+                mensaje += "<b>Costo de la cita: </b>" + citaSeleccionada.getCosto() + "<br>";
+
+                if (citaSeleccionada instanceof CitaGeneral) {
+                    citaGeneral = (CitaGeneral) citaSeleccionada;
+                    mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
+                    mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
+                } else if (citaSeleccionada instanceof CitaEspecialista) {
+                    citaEspecialista = (CitaEspecialista) citaSeleccionada;
+                    mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
+                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
+                }
+
+                mensaje += "<br>";
+                mensaje += "</html>";
+
+                // Mostrar los datos en un mensaje
+                JOptionPane.showMessageDialog(null, mensaje);
+                txtNumeroIdentificacion.setText("");
+            } else {
+                // Mostrar un mensaje de error si no se encontró la cita
+                JOptionPane.showMessageDialog(null, "No se encontró ninguna cita con el ID especificado.");
+                txtNumeroIdentificacion.setText("");
+            }
+        } else {
+            // Mostrar un mensaje de error si el ID no existe en la tabla
+            JOptionPane.showMessageDialog(null, "El ID no existe en la tabla.");
+            txtNumeroIdentificacion.setText("");
+        }
+    }
+
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,6 +225,9 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         labelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListaPacientes = new javax.swing.JTable();
+        txtNumeroIdentificacion = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,71 +243,95 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelTitulo)
-                .addContainerGap(71, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelTitulo)
+                                .addContainerGap(195, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(labelTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(labelTitulo)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tablaListaPacientes.setBackground(new java.awt.Color(255, 255, 255));
         tablaListaPacientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                    "Id", "Nombre", "Fecha", "Tipo de cita", "Costo"
-            }
+                new Object [][] {
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String [] {
+                        "Id", "Nombre", "Fecha", "Tipo de cita", "Costo"
+                }
         ));
         jScrollPane1.setViewportView(tablaListaPacientes);
+
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Digita el numero de indentificación: ");
 
         javax.swing.GroupLayout panelPrincipalListaPacientesLayout = new javax.swing.GroupLayout(panelPrincipalListaPacientes);
         panelPrincipalListaPacientes.setLayout(panelPrincipalListaPacientesLayout);
         panelPrincipalListaPacientesLayout.setHorizontalGroup(
-            panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalListaPacientesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalListaPacientesLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())
+                        .addGroup(panelPrincipalListaPacientesLayout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addGroup(panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addGroup(panelPrincipalListaPacientesLayout.createSequentialGroup()
+                                                .addComponent(txtNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(46, 46, 46)
+                                                .addComponent(btnAceptar)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelPrincipalListaPacientesLayout.setVerticalGroup(
-            panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPrincipalListaPacientesLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPrincipalListaPacientesLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addGroup(panelPrincipalListaPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnAceptar))
+                                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipalListaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelPrincipalListaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPrincipalListaPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelPrincipalListaPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
 
     /**
      * @param args the command line arguments
@@ -296,12 +376,17 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
     }
 
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelPrincipalListaPacientes;
     private javax.swing.JTable tablaListaPacientes;
+    private javax.swing.JTextField txtNumeroIdentificacion;
     // End of variables declaration//GEN-END:variables
 }

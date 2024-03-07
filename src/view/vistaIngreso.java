@@ -447,6 +447,15 @@ public class vistaIngreso extends JFrame {
                 exito.setVisible(true);
                 listaPacientesFrame.actualizarTablaCitas();
 
+                txtNumeroIdentificacion.setText("");
+                textNombre.setText("");
+                txtFecha.setText("");
+                txtCosto.setText("");
+                txtNomEspecialidad.setText("");
+                txtEspecialidad.setText("");
+                txtNomGeneralista.setText("");
+                txtObservaciones.setText("");
+
             } else if (tipoCita.equals("Medico Especialista")) {
                 String especialidad = txtEspecialidad.getText();
                 String nomEspecialista = txtNomEspecialidad.getText();
@@ -454,6 +463,15 @@ public class vistaIngreso extends JFrame {
                 controlador.insertarCita(nuevaCita);
                 vistaGuardarConExito exito = new vistaGuardarConExito();
                 exito.setVisible(true);
+
+                txtNumeroIdentificacion.setText("");
+                textNombre.setText("");
+                txtFecha.setText("");
+                txtCosto.setText("");
+                txtNomEspecialidad.setText("");
+                txtEspecialidad.setText("");
+                txtNomGeneralista.setText("");
+                txtObservaciones.setText("");
             } else {
                 // Manejar otros casos
             }

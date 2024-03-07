@@ -48,14 +48,15 @@ public class vistaCostoTotal extends JFrame {
     }
 
     private void mostrarTotales() {
-        // Calcular el total general y especialista directamente en la misma línea
-        double totalGeneralEspecialista = controlador.calcularCostoTotal("Medico General") + controlador.calcularCostoTotal("Medico Especialista");
+        double costoTotalGeneral = controlador.calcularCostoTotalPorTipo("Medico General");
+        double costoTotalEspecialista = controlador.calcularCostoTotalPorTipo("Medico Especialista");
+        double costoTotal = controlador.calcularCostoTotal();
 
-        // Mostrar los totales en los JTextArea
-        txtPaneCostoGeneral.setText(String.valueOf(controlador.calcularCostoTotal("Medico General")));
-        textPaneCostoEspecialista.setText(String.valueOf(controlador.calcularCostoTotal("Medico Especialista")));
-        txtPaneCostoTotal.setText(String.valueOf(totalGeneralEspecialista));
+        txtPaneCostoGeneral.setText(String.valueOf(costoTotalGeneral));
+        textPaneCostoEspecialista.setText(String.valueOf(costoTotalEspecialista));
+        txtPaneCostoTotal.setText(String.valueOf(costoTotal));
     }
+
 
 
 
