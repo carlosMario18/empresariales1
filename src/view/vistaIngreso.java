@@ -8,20 +8,13 @@ import model.CitaEspecialista;
 import model.CitaGeneral;
 import javax.swing.JOptionPane;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import controller.ControladorCitas;
 import model.CitaMedica;
 
@@ -439,19 +432,19 @@ public class vistaIngreso extends JFrame {
                 String observacion = txtObservaciones.getText();
                 CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, nomGeneralista, observacion);
                 controlador.insertarCita(nuevaCita);
+                vistaGuardarConExito exito = new vistaGuardarConExito();
+                exito.setVisible(true);
             } else if (tipoCita.equals("Medico Especialista")) {
                 String especialidad = txtEspecialidad.getText();
                 String nomEspecialista = txtNomEspecialidad.getText();
                 CitaMedica nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, tipoCita, especialidad, nomEspecialista);
                 controlador.insertarCita(nuevaCita);
+                vistaGuardarConExito exito = new vistaGuardarConExito();
+                exito.setVisible(true);
             } else {
-                // Manejar otros casos
+                
             }
 
-            // Mostrar mensaje de éxito
-            JOptionPane.showMessageDialog(this, "Cita médica guardada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            // Limpiar campos de texto
             limpiarCampos();
         }
     }
