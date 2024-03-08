@@ -27,84 +27,54 @@ public class vistaListaPacientes extends javax.swing.JFrame {
     /**
      * Creates new form vistaListaPacientes
      */
-    public vistaListaPacientes(ControladorCitas controlador ) {
+    public vistaListaPacientes(ControladorCitas controlador) {
         this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
             public void valueChanged(ListSelectionEvent event) {
-
                 if (!event.getValueIsAdjusting()) {
-
                     int filaSeleccionada = tablaListaPacientes.getSelectedRow();
-                    List<CitaMedica> listaCitas = controlador.listarCitas();
-
                     if (filaSeleccionada != -1) {
-                        Object[] filaDatos = new Object[modelo.getColumnCount()];
                         DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
+                        Object[] filaDatos = new Object[modelo.getColumnCount()];
                         for (int i = 0; i < modelo.getColumnCount(); i++) {
                             filaDatos[i] = modelo.getValueAt(filaSeleccionada, i);
                         }
-
-                        CitaGeneral citaGeneral = new CitaGeneral();
-                        CitaEspecialista citaEspecialista = new CitaEspecialista();
-
-
-                        // Buscar la cita correspondiente en la lista
-                        CitaMedica citaSeleccionada = null;
-                        for (CitaMedica cita : listaCitas) {
-                            if (cita.getNumeroIdentificacion().equals(filaDatos[0])) {
-                                citaSeleccionada = cita;
-                                break;
-                            }
-                        }
-
-                        if (citaSeleccionada != null) {
-                            // Resto del código...
-
-                            // Verificar el tipo de cita y establecer la referencia correspondiente
-                            if (citaSeleccionada instanceof CitaGeneral) {
-                                citaGeneral = (CitaGeneral) citaSeleccionada;
-                            } else if (citaSeleccionada instanceof CitaEspecialista) {
-                                citaEspecialista = (CitaEspecialista) citaSeleccionada;
-                            }
-
-                            if (citaSeleccionada != null) {
-                                String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
-                                mensaje += "<br>";
-                                String[] etiquetas = {"N.Identificación", "Nombre Paciente", "Fecha", "Tipo de cita", "Costo cita"};
-
-                                for (int i = 0; i < modelo.getColumnCount(); i++) {
-                                    mensaje += "<b>" + etiquetas[i] + ":</b> " + filaDatos[i] + "<br>";
-                                }
-
-                                if (citaSeleccionada instanceof CitaGeneral) {
-                                    mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
-                                    mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
-                                } else if (citaSeleccionada instanceof CitaEspecialista) {
-                                    mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
-                                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
-                                }
-
-                                mensaje += "<br>";
-                                mensaje += "</html>";
-
-                                // Mostrar los datos en un mensaje
-                                JOptionPane.showMessageDialog(null, mensaje);
-                            }
-                        }
-
+                        mostrarInformacionCita(filaDatos);
                     }
-
                 }
             }
-
-
         });
+    }
+    private void mostrarInformacionCita(Object[] filaDatos) {
+        String idCita = (String) filaDatos[0];
+        CitaMedica cita = controlador.buscarCitaPorId(idCita);
+        if (cita != null) {
+            String mensaje = "<html><b>Información sobre la cita seleccionada:</b><br><br>";
+            mensaje += "<b>Número de Identificación: </b>" + cita.getNumeroIdentificacion() + "<br>";
+            mensaje += "<b>Nombre del Paciente: </b>" + cita.getNombrePaciente() + "<br>";
+            mensaje += "<b>Fecha: </b>" + cita.getFecha() + "<br>";
+            mensaje += "<b>Tipo de cita: </b>" + cita.getTipoCita() + "<br>";
+            mensaje += "<b>Costo de la cita: </b>" + cita.getCosto() + "<br>";
+
+            if (cita instanceof CitaGeneral) {
+                CitaGeneral citaGeneral = (CitaGeneral) cita;
+                mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
+                mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
+            } else if (cita instanceof CitaEspecialista) {
+                CitaEspecialista citaEspecialista = (CitaEspecialista) cita;
+                mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
+                mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getnombreEspecialista() + "<br>";
+            }
+
+            mensaje += "</html>";
+            JOptionPane.showMessageDialog(null, mensaje);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna cita con el ID especificado.");
+        }
     }
 
     private static String filaDatosToString(Object[] filaDatos) {
