@@ -8,12 +8,15 @@ import controller.ControladorCitas;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
+import model.Hospital;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+
+
 
 /**
  *
@@ -53,6 +56,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         String idCita = (String) filaDatos[0];
         CitaMedica cita = controlador.buscarCitaPorId(idCita);
         if (cita != null) {
+            Hospital hospital = Hospital.getHospital();
             String mensaje = "<html><b>Información sobre la cita seleccionada:</b><br><br>";
             mensaje += "<b>Número de Identificación: </b>" + cita.getNumeroIdentificacion() + "<br>";
             mensaje += "<b>Nombre del Paciente: </b>" + cita.getNombrePaciente() + "<br>";
@@ -69,6 +73,10 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                 mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
                 mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getnombreEspecialista() + "<br>";
             }
+
+            // Agregar la información del hospital
+            mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
+            mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
 
             mensaje += "</html>";
             JOptionPane.showMessageDialog(null, mensaje);
