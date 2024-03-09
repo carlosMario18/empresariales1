@@ -160,8 +160,11 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
                 if (citaSeleccionada instanceof CitaGeneral) {
                     citaGeneral = (CitaGeneral) citaSeleccionada;
+                    citaGeneral.asignarConsultorio("Consultorio XYZ"); // Aquí puedes pasar el consultorio que desees
+                    // Asegúrate de actualizar los datos en tu controlador o donde almacenes estas citas
                     mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
                     mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
+                    mensaje += "<b>Consultorio asignado: </b>" + "Consultorio XYZ" + "<br>";
                 } else if (citaSeleccionada instanceof CitaEspecialista) {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
