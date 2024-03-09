@@ -9,8 +9,10 @@ import model.CitaMedica;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  *
@@ -32,6 +34,11 @@ public class vistaModificar extends JFrame {
         this.listaPacientesFrame = listaPacientesFrame;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // Establecer contenido por defecto en los JTextArea
+        textNombre.setText(citaModificar.getNombrePaciente());
+        jDateChooser1.setDate(Date.from(citaModificar.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        boxTipoCita.setSelectedItem(citaModificar.getTipoCita());
+        txtCosto.setText(String.valueOf(citaModificar.getCosto()));
     }
 
     /**
@@ -53,11 +60,11 @@ public class vistaModificar extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextArea();
-        txtFecha = new javax.swing.JTextArea();
         boxTipoCita = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         txtCosto = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,10 +115,7 @@ public class vistaModificar extends JFrame {
         textNombre.setColumns(20);
         textNombre.setRows(5);
 
-        txtFecha.setColumns(20);
-        txtFecha.setRows(5);
-
-        boxTipoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medico General", "Medico Especialista", "Odontologia" }));
+        boxTipoCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medico General", "Medico Especialista"}));
         boxTipoCita.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 boxTipoCitaItemStateChanged(evt);
@@ -149,16 +153,20 @@ public class vistaModificar extends JFrame {
                                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(panelCuerpoLayout.createSequentialGroup()
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                                                 .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCuerpoLayout.createSequentialGroup()
                                                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel4)
                                                         .addComponent(jLabel5))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(boxTipoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(panelCuerpoLayout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(boxTipoCita, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(panelCuerpoLayout.createSequentialGroup()
+                                                                .addGap(165, 165, 165)
+                                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGap(98, 98, 98))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCuerpoLayout.createSequentialGroup()
                                                 .addComponent(jLabel6)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,10 +186,10 @@ public class vistaModificar extends JFrame {
                                         .addComponent(jLabel3)
                                         .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                .addGap(23, 23, 23)
+                                .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
                                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(boxTipoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5))
@@ -193,7 +201,7 @@ public class vistaModificar extends JFrame {
                                 .addGroup(panelCuerpoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnGuardar)
                                         .addComponent(btnCancelar))
-                                .addContainerGap(26, Short.MAX_VALUE))
+                                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelPrincipalVistaModificarLayout = new javax.swing.GroupLayout(panelPrincipalVistaModificar);
@@ -234,16 +242,17 @@ public class vistaModificar extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoCitaActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         String nuevoNombre = textNombre.getText();
-        String nuevaFecha =txtFecha.getText();
+        Date fechaSeleccionada = jDateChooser1.getDate(); // Obtener la fecha seleccionada del JDateChooser
         String nuevoTipoCita = (String) boxTipoCita.getSelectedItem();
         String nuevoCosto = txtCosto.getText();
 
-        if (nuevoNombre.isEmpty() || nuevaFecha.isEmpty() || nuevoTipoCita.isEmpty() || nuevoCosto.isEmpty()){
+        if (nuevoNombre.isEmpty() || fechaSeleccionada == null || nuevoTipoCita.isEmpty() || nuevoCosto.isEmpty()){
             JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         int costo;
         try {
             costo = Integer.parseInt(nuevoCosto);
@@ -251,11 +260,11 @@ public class vistaModificar extends JFrame {
             JOptionPane.showMessageDialog(this, "Error: El costo debe ser un número entero válido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         LocalDate fecha;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
-            fecha = LocalDate.parse(nuevaFecha, formatter);
-        } catch (DateTimeParseException e) {
+            fecha = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: Formato de fecha inválido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -272,14 +281,17 @@ public class vistaModificar extends JFrame {
 
         // Cerrar la ventana de vistaModificar
         dispose();
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtNumeroIdentificacion.setText("");
+//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         textNombre.setText("");
-        txtFecha.setText("");
+        jDateChooser1.setDate(null); // Limpiar la fecha seleccionada en el JDateChooser
+        boxTipoCita.setSelectedIndex(0); // Establecer el primer elemento seleccionado en el JComboBox
         txtCosto.setText("");
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }
+//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,8 +348,8 @@ public class vistaModificar extends JFrame {
     private javax.swing.JComboBox<String> boxTipoCita;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -348,7 +360,5 @@ public class vistaModificar extends JFrame {
     private javax.swing.JPanel panelPrincipalVistaModificar;
     private javax.swing.JTextArea textNombre;
     private javax.swing.JTextArea txtCosto;
-    private javax.swing.JTextArea txtFecha;
-    private javax.swing.JTextArea txtNumeroIdentificacion;
     // End of variables declaration//GEN-END:variables
 }
