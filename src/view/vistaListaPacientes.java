@@ -149,6 +149,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
             // Verificar si se encontró la cita
             if (citaSeleccionada != null) {
+                Hospital hospital = Hospital.getHospital();
                 String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
                 mensaje += "<br>";
                 mensaje += "<b>Número de Identificación: </b>" + citaSeleccionada.getNumeroIdentificacion() + "<br>";
@@ -167,7 +168,10 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                     mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
                 }
 
-                mensaje += "<br>";
+                // Agregar la información del hospital
+                mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
+                mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
+
                 mensaje += "</html>";
 
                 // Mostrar los datos en un mensaje
