@@ -71,7 +71,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
             } else if (cita instanceof CitaEspecialista) {
                 CitaEspecialista citaEspecialista = (CitaEspecialista) cita;
                 mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
-                mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getnombreEspecialista() + "<br>";
+                mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getNombreEspecialista() + "<br>";
             }
 
             // Agregar la información del hospital
@@ -165,12 +165,15 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                 } else if (citaSeleccionada instanceof CitaEspecialista) {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
-                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
+                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getNombreEspecialista() + "<br>";
+                    mensaje +="<b>Detalles consultorio asignado: </b> " + citaEspecialista.getConsultorio() + "<br>";
                 }
 
                 // Agregar la información del hospital
                 mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
                 mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
+
+
 
                 mensaje += "</html>";
 
