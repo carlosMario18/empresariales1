@@ -283,15 +283,12 @@ public class vistaModificar extends JFrame {
         dispose();
     }
 
-//GEN-LAST:event_btnGuardarActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         textNombre.setText("");
         jDateChooser1.setDate(null); // Limpiar la fecha seleccionada en el JDateChooser
         boxTipoCita.setSelectedIndex(0); // Establecer el primer elemento seleccionado en el JComboBox
         txtCosto.setText("");
     }
-//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

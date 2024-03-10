@@ -14,7 +14,7 @@ public class Hospital {
         if (hospital == null) {
             hospital = new Hospital();
             hospital.setNit("1234567890");
-            hospital.setNombre("Clinica San Pablo");
+            hospital.setNombre("Hospital de Ibagué");
         }
 
         return hospital;

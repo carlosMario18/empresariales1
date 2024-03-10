@@ -477,9 +477,6 @@ public class vistaIngreso extends JFrame {
         txtObservaciones.setText("");
     }
 
-
-
-
     private void btnCostoTotalActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
 
         vistaCostoTotal vistaCostoTotal = new vistaCostoTotal(controlador);
@@ -490,7 +487,6 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void boxTipoCitaItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_boxTipoCitaItemStateChanged
-
 
     }//GEN-LAST:event_boxTipoCitaItemStateChanged
 
@@ -539,13 +535,10 @@ public class vistaIngreso extends JFrame {
         vistaListaPacientes.setVisible(true);
     }
 
-
-
     private void btnModificarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         vistaBuscar vistaBuscar = new vistaBuscar(controlador);
         vistaBuscar.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
-
     private void btnAcercaDeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
 
         vistaAcercaDe vistaAcerca = new vistaAcercaDe();
