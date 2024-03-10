@@ -59,6 +59,15 @@ public class ControladorCitas {
         return false;
     }
 
+    public void asignarConsultorioACitaGeneral(String idCita, String consultorio) {
+        CitaMedica cita = buscarCitaPorId(idCita);
+        if (cita != null && cita instanceof CitaGeneral) {
+            ((CitaGeneral) cita).asignarConsultorio(consultorio);
+        } else {
+            System.out.println("La cita no es de tipo CitaGeneral o no se encontró la cita.");
+        }
+    }
+
     public void modificarCita(CitaMedica citaModificada) {
         for (int i = 0; i < citas.size(); i++) {
             if (citas.get(i).getNumeroIdentificacion().equals(citaModificada.getNumeroIdentificacion())) {

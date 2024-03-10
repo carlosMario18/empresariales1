@@ -8,12 +8,15 @@ import controller.ControladorCitas;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
+import model.Hospital;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+
+
 
 /**
  *
@@ -53,6 +56,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         String idCita = (String) filaDatos[0];
         CitaMedica cita = controlador.buscarCitaPorId(idCita);
         if (cita != null) {
+            Hospital hospital = Hospital.getHospital();
             String mensaje = "<html><b>Información sobre la cita seleccionada:</b><br><br>";
             mensaje += "<b>Número de Identificación: </b>" + cita.getNumeroIdentificacion() + "<br>";
             mensaje += "<b>Nombre del Paciente: </b>" + cita.getNombrePaciente() + "<br>";
@@ -67,8 +71,12 @@ public class vistaListaPacientes extends javax.swing.JFrame {
             } else if (cita instanceof CitaEspecialista) {
                 CitaEspecialista citaEspecialista = (CitaEspecialista) cita;
                 mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
-                mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getnombreEspecialista() + "<br>";
+                mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getNombreEspecialista() + "<br>";
             }
+
+            // Agregar la información del hospital
+            mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
+            mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
 
             mensaje += "</html>";
             JOptionPane.showMessageDialog(null, mensaje);
@@ -141,6 +149,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
             // Verificar si se encontró la cita
             if (citaSeleccionada != null) {
+                Hospital hospital = Hospital.getHospital();
                 String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
                 mensaje += "<br>";
                 mensaje += "<b>Número de Identificación: </b>" + citaSeleccionada.getNumeroIdentificacion() + "<br>";
@@ -151,15 +160,24 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
                 if (citaSeleccionada instanceof CitaGeneral) {
                     citaGeneral = (CitaGeneral) citaSeleccionada;
+                    citaGeneral.asignarConsultorio("Consultorio XYZ"); // Aquí puedes pasar el consultorio que desees
+                    // Asegúrate de actualizar los datos en tu controlador o donde almacenes estas citas
                     mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
                     mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
+                    mensaje += "<b>Consultorio asignado: </b>" + "Consultorio XYZ" + "<br>";
                 } else if (citaSeleccionada instanceof CitaEspecialista) {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
-                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getnombreEspecialista() + "<br>";
+                    mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getNombreEspecialista() + "<br>";
+                    mensaje +="<b>Detalles consultorio asignado: </b> " + citaEspecialista.getConsultorio() + "<br>";
                 }
 
-                mensaje += "<br>";
+                // Agregar la información del hospital
+                mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
+                mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
+
+
+
                 mensaje += "</html>";
 
                 // Mostrar los datos en un mensaje

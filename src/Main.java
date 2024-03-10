@@ -23,6 +23,7 @@ public class Main {
         // Crear una instancia de vistaIngreso
         vistaIngreso ingresoFrame = new vistaIngreso();
 
+        System.out.println();
         // Establecer la instancia de vistaListaPacientes en vistaIngreso
         ingresoFrame.setListaPacientesFrame(listaPacientesFrame);
 
