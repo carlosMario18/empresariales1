@@ -253,9 +253,9 @@ public class vistaModificar extends JFrame {
             return;
         }
 
-        int costo;
+        double costo;
         try {
-            costo = Integer.parseInt(nuevoCosto);
+            costo = Double.parseDouble(nuevoCosto);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: El costo debe ser un número entero válido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
