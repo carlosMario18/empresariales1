@@ -449,6 +449,7 @@ public class vistaIngreso extends JFrame {
             String nomGeneralista = txtNomGeneralista.getText();
             String observacion = txtObservaciones.getText();
             CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, tipoCita, nomGeneralista, observacion);
+            controlador.asignarConsultorioACitaGeneral(id, );
             controlador.insertarCita(nuevaCita);
         } else if (tipoCita.equals("Medico Especialista")) {
             String especialidad = txtEspecialidad.getText();
