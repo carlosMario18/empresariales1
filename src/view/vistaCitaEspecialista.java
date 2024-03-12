@@ -248,11 +248,11 @@ public class vistaCitaEspecialista extends JFrame {
         }
 
 
-        int costo;
+        double costo;
         try {
-            costo = Integer.parseInt(costoTxt);
+            costo = Double.parseDouble(costoTxt);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error: El costo debe ser un número entero válido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: El costo debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -286,9 +286,19 @@ public class vistaCitaEspecialista extends JFrame {
 
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);
+        limpiarCampos();
+
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void limpiarCampos() {
+        txtNumeroIdentificacion.setText("");
+        textNombre.setText("");
+        jDateChooser1.setDate(null);
+        txtCosto.setText("");
+        txtNomEspecialista.setText("");
+        txtEspecialidad.setText("");
+    }
     /**
      * @param args the command line arguments
      */

@@ -59,7 +59,7 @@ public abstract class CitaMedica {
         this.tipoCita = tipoCita;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(double costo) {
         this.costo = costo;
     }
 
