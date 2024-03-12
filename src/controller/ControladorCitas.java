@@ -3,6 +3,7 @@ package controller;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
+import view.vistaListaPacientes;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -10,13 +11,16 @@ import java.util.*;
 public class ControladorCitas {
 
     private List<CitaMedica> citas = new ArrayList<>();
+    private List<vistaListaPacientes> observadores = new ArrayList<>();
 
     public void insertarCita(CitaMedica cita) {
         citas.add(cita);
+        notificarObservadores();
     }
 
     public void eliminarCita(CitaMedica cita) {
         citas.remove(cita);
+        notificarObservadores();
     }
 
     public CitaMedica buscarCitaPorId(String id) {
@@ -59,14 +63,27 @@ public class ControladorCitas {
         return false;
     }
 
-    public void asignarConsultorioACitaGeneral(String idCita, String consultorio) {
+    public void agregarObservador(vistaListaPacientes observador) {
+        observadores.add(observador);
+    }
+
+    public void eliminarObservador(vistaListaPacientes observador) {
+        observadores.remove(observador);
+    }
+
+    private void notificarObservadores() {
+        for (vistaListaPacientes observador : observadores) {
+            observador.update();
+        }
+    }
+    /*public void asignarConsultorioACitaGeneral(String idCita, String consultorio) {
         CitaMedica cita = buscarCitaPorId(idCita);
         if (cita != null && cita instanceof CitaGeneral) {
-            ((CitaGeneral) cita).asignarConsultorio(consultorio);
+            ((CitaGeneral) cita).asignarConsultorio();
         } else {
             System.out.println("La cita no es de tipo CitaGeneral o no se encontró la cita.");
         }
-    }
+    }*/
 
     public void modificarCita(CitaMedica citaModificada) {
         for (int i = 0; i < citas.size(); i++) {
@@ -81,5 +98,5 @@ public class ControladorCitas {
         return citas;
     }
 
-}
 
+}

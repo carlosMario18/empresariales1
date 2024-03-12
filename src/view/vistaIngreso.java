@@ -392,7 +392,7 @@ public class vistaIngreso extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-      // Instancia compartida
+    // Instancia compartida
 
     public void setListaPacientesFrame(vistaListaPacientes listaPacientesFrame) {
         this.listaPacientesFrame = listaPacientesFrame;
@@ -403,19 +403,19 @@ public class vistaIngreso extends JFrame {
     }
 
     private void btnGuardarActionPerformed(ActionEvent evt) {
-        // Leer datos ingresados por el usuario
+
         String id = txtNumeroIdentificacion.getText();
         String nombre = textNombre.getText();
         String tipoCita = (String) boxTipoCita.getSelectedItem();
         String costoTxt = txtCosto.getText();
 
-        // Validar campos obligatorios
+
         if (id.isEmpty() || nombre.isEmpty() || tipoCita.isEmpty() || costoTxt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Convertir el costo a entero
+
         int costo;
         try {
             costo = Integer.parseInt(costoTxt);
@@ -424,7 +424,7 @@ public class vistaIngreso extends JFrame {
             return;
         }
 
-        // Obtener la fecha seleccionada por el usuario
+
         LocalDate fecha;
         try {
             fecha = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -433,18 +433,18 @@ public class vistaIngreso extends JFrame {
             return;
         }
 
-        // Verificar si el ID ya está registrado
+
         if (controlador.idExistente(id)) {
             JOptionPane.showMessageDialog(this, "Error: El ID ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Crear una instancia de ConsultorioEspecializado
+
         String numeroConsultorio = "A302";
         String seccion = "Norte";
         ConsultorioEspecializado consultorio = new ConsultorioEspecializado(numeroConsultorio, seccion);
 
-        // Crear una nueva cita médica según el tipo de cita seleccionada
+
         if (tipoCita.equals("Medico General")) {
             String nomGeneralista = txtNomGeneralista.getText();
             String observacion = txtObservaciones.getText();
@@ -456,10 +456,9 @@ public class vistaIngreso extends JFrame {
             CitaMedica nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, tipoCita, especialidad, nomEspecialista, consultorio);
             controlador.insertarCita(nuevaCita);
         } else {
-            // Lógica para otro tipo de cita, si es necesario
+
         }
 
-        // Mostrar un mensaje de éxito y limpiar campos
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);
         limpiarCampos();

@@ -39,9 +39,11 @@ public class CitaGeneral extends CitaMedica implements MedicoG {
     }
 
     @Override
-    public void asignarConsultorio(String consultorio) {
-        this.consultorio = consultorio;
-        System.out.println("Consultorio asignado: " + consultorio);
+    public int asignarConsultorio() {
+
+        int numero = 10;
+        System.out.println("Consultorio asignado: " + numero);
+        return  numero;
     }
     public double calcularCosto() {
         return getCosto();
