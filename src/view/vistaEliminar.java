@@ -5,8 +5,6 @@
 package view;
 
 import controller.ControladorCitas;
-import interfaz.Observable;
-import interfaz.Observador;
 import model.CitaMedica;
 import java.util.ArrayList;
 
@@ -16,31 +14,10 @@ import javax.swing.JFrame;
  *
  * @author alejandrosanmiguel
  */
-public class vistaEliminar extends javax.swing.JFrame implements Observable {
+public class vistaEliminar extends javax.swing.JFrame {
 
     private vistaListaPacientes listaPacientesFrame;
-    private ArrayList<Observador> observadores;
 
-    public vistaEliminar() {
-        observadores = new ArrayList<>();
-    }
-    @Override
-    public void agregarObservador(Observador observador) {
-        observadores.add(observador);
-    }
-    @Override
-    public void eliminarObservador(Observador observador) {
-        observadores.remove(observador);
-    }
-
-    @Override
-    public void notificar() {
-        if (observadores != null) {
-            for (Observador observador : observadores) {
-                observador.update();
-            }
-        }
-    }
 
     private ControladorCitas controlador;
     /**
@@ -55,7 +32,6 @@ public class vistaEliminar extends javax.swing.JFrame implements Observable {
 
     public vistaEliminar(vistaListaPacientes listaPacientesFrame) {
         this.listaPacientesFrame = listaPacientesFrame;
-        observadores = new ArrayList<Observador>();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -204,7 +180,7 @@ public class vistaEliminar extends javax.swing.JFrame implements Observable {
             fallido.setVisible(true);
         }
 
-        notificar();
+
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -249,8 +225,6 @@ public class vistaEliminar extends javax.swing.JFrame implements Observable {
 
                 vistaEliminar.setVisible(true);
 
-
-                listaPacientesFrame.agregarObservadorEliminar(vistaEliminar);
             }
         });
     }
