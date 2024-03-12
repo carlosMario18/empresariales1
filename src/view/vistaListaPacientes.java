@@ -5,7 +5,6 @@
 package view;
 
 import controller.ControladorCitas;
-import interfaz.Observador;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
@@ -23,16 +22,7 @@ import java.util.List;
  *
  * @author alejandrosanmiguel
  */
-public class vistaListaPacientes extends javax.swing.JFrame implements Observador {
-
-    public void agregarObservadorEliminar(vistaEliminar vistaEliminar) {
-        vistaEliminar.agregarObservador(this);
-    }
-    @Override
-    public void update() {
-        // Actualiza la tabla de citas
-        actualizarTablaCitas();
-    }
+public class vistaListaPacientes extends javax.swing.JFrame  {
 
     private ControladorCitas controlador;
 
@@ -45,7 +35,6 @@ public class vistaListaPacientes extends javax.swing.JFrame implements Observado
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
-        controlador.agregarObservador(this);
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -356,8 +345,6 @@ public class vistaListaPacientes extends javax.swing.JFrame implements Observado
                 // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
 
-                // Pasar la instancia de vistaEliminar a vistaListaPacientes
-                listaPacientesFrame.agregarObservadorEliminar(vistaEliminarFrame);
             }
         });
 
@@ -373,7 +360,7 @@ public class vistaListaPacientes extends javax.swing.JFrame implements Observado
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelPrincipalListaPacientes;
-    private javax.swing.JTable tablaListaPacientes;
+    public javax.swing.JTable tablaListaPacientes;
     private javax.swing.JTextField txtNumeroIdentificacion;
     // End of variables declaration//GEN-END:variables
 }
