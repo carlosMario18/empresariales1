@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import interfaz.Observador;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
@@ -22,7 +23,16 @@ import java.util.List;
  *
  * @author alejandrosanmiguel
  */
-public class vistaListaPacientes extends javax.swing.JFrame {
+public class vistaListaPacientes extends javax.swing.JFrame implements Observador {
+
+    public void agregarObservadorEliminar(vistaEliminar vistaEliminar) {
+        vistaEliminar.agregarObservador(this);
+    }
+    @Override
+    public void update() {
+        // Actualiza la tabla de citas
+        actualizarTablaCitas();
+    }
 
     private ControladorCitas controlador;
 
@@ -35,6 +45,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         actualizarTablaCitas();
+        controlador.agregarObservador(this);
 
         tablaListaPacientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -117,23 +128,6 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
     }
 
-    public void actualizarTablaCitas2() {
-
-        // Obtener las citas del controlador
-        List<CitaMedica> citas = controlador.listarCitas();
-        // Limpiar la tabla
-        DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
-        modelo.setRowCount(0);
-        // Llenar la tabla con las nuevas citas
-        for (CitaMedica cita : citas) {
-            Object[] fila = new Object[5];
-            fila[1] = cita.getNombrePaciente();
-            fila[2] = cita.getFecha();
-            fila[3] = cita.getTipoCita();
-            fila[4] = cita.getCosto();
-            modelo.addRow(fila);
-        }
-    }
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
@@ -160,11 +154,10 @@ public class vistaListaPacientes extends javax.swing.JFrame {
 
                 if (citaSeleccionada instanceof CitaGeneral) {
                     citaGeneral = (CitaGeneral) citaSeleccionada;
-                    citaGeneral.asignarConsultorio("Consultorio XYZ"); // Aquí puedes pasar el consultorio que desees
-                    // Asegúrate de actualizar los datos en tu controlador o donde almacenes estas citas
+
                     mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
                     mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
-                    mensaje += "<b>Consultorio asignado: </b>" + "Consultorio XYZ" + "<br>";
+                    mensaje += "<b>Consultorio asignado: </b>" + citaGeneral.asignarConsultorio()  + "<br>";
                 } else if (citaSeleccionada instanceof CitaEspecialista) {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
@@ -328,7 +321,7 @@ public class vistaListaPacientes extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -357,8 +350,14 @@ public class vistaListaPacientes extends javax.swing.JFrame {
                 // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
 
+                // Crear una instancia de vistaEliminar
+                vistaEliminar vistaEliminarFrame = new vistaEliminar(listaPacientesFrame);
+
                 // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
+
+                // Pasar la instancia de vistaEliminar a vistaListaPacientes
+                listaPacientesFrame.agregarObservadorEliminar(vistaEliminarFrame);
             }
         });
 
