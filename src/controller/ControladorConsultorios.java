@@ -12,15 +12,15 @@ public class ControladorConsultorios {
 
     public void insertarConsultorio(ConsultorioEspecializado consultorio) {
         consultorios.add(consultorio);
-
     }
+
     public void eliminarConsultorio(ConsultorioEspecializado consultorio) {
         consultorios.remove(consultorio);
-
     }
+
     public ConsultorioEspecializado buscarPornumeroConsultorio(String id) {
         for (ConsultorioEspecializado consultorioEspecializado : consultorios) {
-            if (consultorioEspecializado.getNumeroConsultorio().equals(id)) {
+            if (consultorioEspecializado.getNumeroConsultorio().equals(id) ) {
                 return consultorioEspecializado;
             }
         }
@@ -50,4 +50,12 @@ public class ControladorConsultorios {
         }
     }
 
+    public void modificarCita(ConsultorioEspecializado consultorioModificado) {
+        for (int i = 0; i < consultorios.size(); i++) {
+            if (consultorios.get(i).getNumeroConsultorio().equals(consultorioModificado.getNumeroConsultorio())) {
+                consultorios.set(i, consultorioModificado);
+                break;
+            }
+        }
+    }
 }

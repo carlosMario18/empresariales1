@@ -132,15 +132,13 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
-
-        // Verificar si el ID existe en la tabla
         boolean idExiste = controlador.idExistente(id);
         CitaGeneral citaGeneral = new CitaGeneral();
         CitaEspecialista citaEspecialista = new CitaEspecialista();
         ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
         if (idExiste) {
-            // Buscar la cita correspondiente al ID
+
             CitaMedica citaSeleccionada = controlador.buscarCitaPorId(id);
 
             // Verificar si se encontró la cita
@@ -164,24 +162,17 @@ public class vistaListaPacientes extends JFrame implements Observador {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
                     mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getNombreEspecialista() + "<br>";
-                    mensaje += "<b>Número de Consultorio: </b>" + consultorioEspecializado.getNumeroConsultorio() + "<br>";
-                    mensaje += "<b>Sección: </b>" + consultorioEspecializado.getSeccion() + "<br>";
-
                 }
 
-                // Agregar la información del hospital
                 mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
                 mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
 
-
-
                 mensaje += "</html>";
 
-                // Mostrar los datos en un mensaje
                 JOptionPane.showMessageDialog(null, mensaje);
                 txtNumeroIdentificacion.setText("");
             } else {
-                // Mostrar un mensaje de error si no se encontró la cita
+
                 JOptionPane.showMessageDialog(null, "No se encontró ninguna cita con el ID especificado.");
                 txtNumeroIdentificacion.setText("");
             }
@@ -191,9 +182,6 @@ public class vistaListaPacientes extends JFrame implements Observador {
             txtNumeroIdentificacion.setText("");
         }
     }
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -348,17 +336,14 @@ public class vistaListaPacientes extends JFrame implements Observador {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // Crear una instancia de ControladorCitas
+
                 ControladorCitas controlador = new ControladorCitas();
                 ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
-                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
 
-                // Crear una instancia de vistaEliminar
                 vistaEliminar vistaEliminarFrame = new vistaEliminar(listaPacientesFrame);
 
-                // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
 
                 listaPacientesFrame.agregarObservadorEliminar(vistaEliminarFrame);

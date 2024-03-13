@@ -15,7 +15,6 @@ import javax.swing.*;
  */
 public class vistaModificarConsultorio extends javax.swing.JFrame {
 
-
     private ControladorConsultorios controladorConsultorios;
     private ConsultorioEspecializado consultorioModificar;
 

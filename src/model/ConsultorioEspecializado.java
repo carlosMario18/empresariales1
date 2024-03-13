@@ -9,11 +9,8 @@ public class ConsultorioEspecializado {
         this.numeroConsultorio = numeroConsultorio;
         this.seccion = seccion;
     }
-
     public ConsultorioEspecializado() {
-
     }
-
     public String getNumeroConsultorio() {
         return numeroConsultorio;
     }
