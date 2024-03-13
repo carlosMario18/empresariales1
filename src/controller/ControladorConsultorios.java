@@ -35,6 +35,11 @@ public class ControladorConsultorios {
         }
         return false;
     }
+    public String mostrarNumero(){
+        ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
+        String numero = consultorioEspecializado.getNumeroConsultorio();
+        return numero;
+    }
 
     public void modificarCita(ConsultorioEspecializado consultorioModificado) {
         for (int i = 0; i < consultorios.size(); i++) {

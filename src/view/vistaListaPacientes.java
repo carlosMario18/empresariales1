@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 
+
 /**
+ *
  * @author alejandrosanmiguel
  */
 public class vistaListaPacientes extends JFrame implements Observador {
@@ -24,16 +26,15 @@ public class vistaListaPacientes extends JFrame implements Observador {
     public void agregarObservadorEliminar(vistaEliminar vistaEliminar) {
         vistaEliminar.agregarObservador(this);
     }
-
     @Override
     public void update() {
+        // Actualiza la tabla de citas
         actualizarTablaCitas();
     }
 
     private ControladorCitas controlador;
 
     private ControladorConsultorios controladorConsultorios;
-
     /**
      * Creates new form vistaListaPacientes
      */
@@ -61,7 +62,6 @@ public class vistaListaPacientes extends JFrame implements Observador {
             }
         });
     }
-
     private void mostrarInformacionCita(Object[] filaDatos) {
         String idCita = (String) filaDatos[0];
         CitaMedica cita = controlador.buscarCitaPorId(idCita);
@@ -84,6 +84,7 @@ public class vistaListaPacientes extends JFrame implements Observador {
                 mensaje += "<b>Nombre Especialista: </b>" + citaEspecialista.getNombreEspecialista() + "<br>";
             }
 
+            // Agregar la información del hospital
             mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
             mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
 
@@ -105,12 +106,14 @@ public class vistaListaPacientes extends JFrame implements Observador {
     public DefaultTableModel getModeloTabla() {
         return (DefaultTableModel) tablaListaPacientes.getModel();
     }
-
     public void actualizarTablaCitas() {
 
+        // Obtener las citas del controlador
         List<CitaMedica> citas = controlador.listarCitas();
+        // Limpiar la tabla
         DefaultTableModel modelo = (DefaultTableModel) tablaListaPacientes.getModel();
         modelo.setRowCount(0);
+        // Llenar la tabla con las nuevas citas
         for (CitaMedica cita : citas) {
             Object[] fila = new Object[5];
             fila[0] = cita.getNumeroIdentificacion();
@@ -130,14 +133,17 @@ public class vistaListaPacientes extends JFrame implements Observador {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
 
+        // Verificar si el ID existe en la tabla
         boolean idExiste = controlador.idExistente(id);
         CitaGeneral citaGeneral = new CitaGeneral();
         CitaEspecialista citaEspecialista = new CitaEspecialista();
         ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
         if (idExiste) {
+            // Buscar la cita correspondiente al ID
             CitaMedica citaSeleccionada = controlador.buscarCitaPorId(id);
 
+            // Verificar si se encontró la cita
             if (citaSeleccionada != null) {
                 Hospital hospital = Hospital.getHospital();
                 String mensaje = "<html><b>   Información sobre la cita seleccionada    </b><br>";
@@ -153,7 +159,7 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
                     mensaje += "<b>Nombre Generalista: </b>" + citaGeneral.getNombreGeneralista() + "<br>";
                     mensaje += "<b>Observaciones: </b>" + citaGeneral.getObservacion() + "<br>";
-                    mensaje += "<b>Consultorio asignado: </b>" + citaGeneral.asignarConsultorio() + "<br>";
+                    mensaje += "<b>Consultorio asignado: </b>" + citaGeneral.asignarConsultorio()  + "<br>";
                 } else if (citaSeleccionada instanceof CitaEspecialista) {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
@@ -163,23 +169,30 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
                 }
 
+                // Agregar la información del hospital
                 mensaje += "<b>Nombre del Hospital: </b>" + hospital.getNombre() + "<br>";
                 mensaje += "<b>NIT del Hospital: </b>" + hospital.getNit() + "<br>";
 
 
+
                 mensaje += "</html>";
 
+                // Mostrar los datos en un mensaje
                 JOptionPane.showMessageDialog(null, mensaje);
                 txtNumeroIdentificacion.setText("");
             } else {
+                // Mostrar un mensaje de error si no se encontró la cita
                 JOptionPane.showMessageDialog(null, "No se encontró ninguna cita con el ID especificado.");
                 txtNumeroIdentificacion.setText("");
             }
         } else {
+            // Mostrar un mensaje de error si el ID no existe en la tabla
             JOptionPane.showMessageDialog(null, "El ID no existe en la tabla.");
             txtNumeroIdentificacion.setText("");
         }
     }
+
+
 
 
     /**
@@ -234,13 +247,13 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
         tablaListaPacientes.setBackground(new java.awt.Color(255, 255, 255));
         tablaListaPacientes.setModel(new DefaultTableModel(
-                new Object[][]{
+                new Object [][] {
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null}
                 },
-                new String[]{
+                new String [] {
                         "Id", "Nombre", "Fecha", "Tipo de cita", "Costo"
                 }
         ));
@@ -354,6 +367,7 @@ public class vistaListaPacientes extends JFrame implements Observador {
         });
 
     }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

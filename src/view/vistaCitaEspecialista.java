@@ -22,11 +22,15 @@ import java.time.ZoneId;
 public class vistaCitaEspecialista extends JFrame {
 
     private ControladorCitas controlador;
-    private ControladorConsultorios controladorConsultorios;
+    private ConsultorioEspecializado controladorConsultorios;
+    private  ConsultorioEspecializado consultorioEspecializado;
+    private  CitaEspecialista citaEspecialista;
     /**
      * Creates new form vistaMedicoEspecialista
      */
-    public vistaCitaEspecialista(ControladorCitas  controlador, ControladorConsultorios controladorConsultorios) {
+    public vistaCitaEspecialista(ControladorCitas  controlador, ConsultorioEspecializado controladorConsultorios) {
+        consultorioEspecializado = new ConsultorioEspecializado();
+        citaEspecialista = new CitaEspecialista( );
         this.controlador = controlador;
         this.controladorConsultorios = controladorConsultorios;
         initComponents();
@@ -237,20 +241,18 @@ public class vistaCitaEspecialista extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
         String nombre = textNombre.getText();
         String costoTxt = txtCosto.getText();
 
-
+        // Validar si los campos obligatorios están vacíos
         if (id.isEmpty() || nombre.isEmpty() || costoTxt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-
+        // Convertir el texto del costo a un número
         double costo;
         try {
             costo = Double.parseDouble(costoTxt);
@@ -259,7 +261,7 @@ public class vistaCitaEspecialista extends JFrame {
             return;
         }
 
-
+        // Obtener la fecha seleccionada
         LocalDate fecha;
         try {
             fecha = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -268,34 +270,34 @@ public class vistaCitaEspecialista extends JFrame {
             return;
         }
 
-
+        // Verificar si el ID ya está registrado
         if (controlador.idExistente(id)) {
             JOptionPane.showMessageDialog(this, "Error: El ID ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-
-        ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
+        // Obtener el número de consultorio y la sección
         String numeroConsultorio = consultorioEspecializado.getNumeroConsultorio();
         String seccion = consultorioEspecializado.getSeccion();
 
-        ConsultorioEspecializado consultorio= new ConsultorioEspecializado(numeroConsultorio,seccion);
-
-
-
+        ConsultorioEspecializado consultorio = new ConsultorioEspecializado(numeroConsultorio, seccion);
+        citaEspecialista.setConsultorio(consultorioEspecializado);
 
         String especialidad = txtEspecialidad.getText();
         String nomEspecialista = txtNomEspecialista.getText();
-        CitaMedica nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, "Medico Especialista", especialidad, nomEspecialista, consultorio);
+        CitaMedica nuevaCita = new CitaEspecialista(id, nombre, fecha, costo, "Medico Especialista", especialidad, nomEspecialista, consultorioEspecializado);
+
         controlador.insertarCita(nuevaCita);
 
-
+        // Mostrar un mensaje de éxito
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);
+
+
+        // Limpiar los campos después de guardar la cita
         limpiarCampos();
-
-
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }
+//GEN-LAST:event_btnGuardarActionPerformed
 
     private void limpiarCampos() {
         txtNumeroIdentificacion.setText("");

@@ -32,7 +32,9 @@ public class vistaIngreso extends JFrame {
     private ControladorCitas controlador;
     private vistaListaPacientes listaPacientesFrame;
     private  CitaMedica citaMedica;
-    private ControladorConsultorios controladorConsultorio;
+    private ConsultorioEspecializado consultorioEspecializado;
+    private  ControladorConsultorios controladorConsultorios;
+
     /**
      * Creates new form vistaIngreso
      */
@@ -40,7 +42,8 @@ public class vistaIngreso extends JFrame {
 
         controlador = new ControladorCitas();
         citaMedica = new CitaGeneral();
-        controladorConsultorio = new ControladorConsultorios();
+        controladorConsultorios= new ControladorConsultorios ();
+        consultorioEspecializado = new ConsultorioEspecializado();
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -236,12 +239,12 @@ public class vistaIngreso extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultorioEspecializadoActionPerformed(ActionEvent evt) {
-        vistaConsultorioEspecializado vistaConsultorioEspecializado = new vistaConsultorioEspecializado(controladorConsultorio);
+        vistaConsultorioEspecializado vistaConsultorioEspecializado = new vistaConsultorioEspecializado(controladorConsultorios);
         vistaConsultorioEspecializado.setVisible(true);
     }
 
     private void btnCitaEspecialistaActionPerformed(ActionEvent evt) {
-        vistaCitaEspecialista vistaCitaEspecialista = new vistaCitaEspecialista(controlador, controladorConsultorio);
+        vistaCitaEspecialista vistaCitaEspecialista = new vistaCitaEspecialista(controlador, consultorioEspecializado);
         vistaCitaEspecialista.setVisible(true);
     }
 
@@ -273,13 +276,13 @@ public class vistaIngreso extends JFrame {
 
 
     private void btnListaPacientesActionPerformed(ActionEvent evt) {
-        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes(controlador, controladorConsultorio);
+        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes(controlador, controladorConsultorios);
 
         vistaListaPacientes.setVisible(true);
     }
 
     private void btnModificarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        vistaBuscaPorTipo vistaBuscaPorTipo = new vistaBuscaPorTipo(controlador, controladorConsultorio);
+        vistaBuscaPorTipo vistaBuscaPorTipo = new vistaBuscaPorTipo(controlador, controladorConsultorios);
         vistaBuscaPorTipo.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
     private void btnAcercaDeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
@@ -289,7 +292,7 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnEliminarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador, controladorConsultorio);
+        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador, controladorConsultorios);
         vistaBuscarPorTipoEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 

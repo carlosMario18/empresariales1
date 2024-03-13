@@ -180,6 +180,10 @@ public class vistaConsultorioEspecializado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: El consultorio ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+//        ConsultorioEspecializado consultorio = new ConsultorioEspecializado();
+//
+//        consultorio.setNumeroConsultorio(numeroConsultorio);
+//        consultorio.setSeccion(seccion);
 
         ConsultorioEspecializado consultorio = new ConsultorioEspecializado(numeroConsultorio, seccion);
         controlador.insertarConsultorio(consultorio);
