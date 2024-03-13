@@ -1,11 +1,15 @@
 package model;
 
+import interfaz.MedicoG;
+
 import java.time.LocalDate;
 
-public class CitaGeneral extends CitaMedica {
+public class CitaGeneral extends CitaMedica implements MedicoG {
 
     private String nombreGeneralista;
     private String observacion;
+    private String consultorio;
+
 
 
     public CitaGeneral(String numeroIdentificacion, String nombrePaciente, LocalDate fecha, double costo, String tipoCita, String nombreGeneralista, String observacion) {
@@ -34,6 +38,13 @@ public class CitaGeneral extends CitaMedica {
         this.observacion = observacion;
     }
 
+    @Override
+    public int asignarConsultorio() {
+
+        int numero = 10;
+        System.out.println("Consultorio asignado: " + numero);
+        return  numero;
+    }
     public double calcularCosto() {
         return getCosto();
     }

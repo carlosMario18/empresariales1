@@ -1,23 +1,29 @@
 package controller;
 
-import model.CitaEspecialista;
-import model.CitaGeneral;
 import model.CitaMedica;
+import view.vistaListaPacientes;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControladorCitas {
 
     private List<CitaMedica> citas = new ArrayList<>();
+    private List<vistaListaPacientes> observadores = new ArrayList<>();
+
 
     public void insertarCita(CitaMedica cita) {
         citas.add(cita);
+        notificarObservadores();
+
     }
 
     public void eliminarCita(CitaMedica cita) {
         citas.remove(cita);
+        notificarObservadores();
+
     }
+
 
     public CitaMedica buscarCitaPorId(String id) {
         for (CitaMedica cita : citas) {
@@ -59,6 +65,21 @@ public class ControladorCitas {
         return false;
     }
 
+
+    public void agregarObservador(vistaListaPacientes observador) {
+        observadores.add(observador);
+    }
+
+    public void eliminarObservador(vistaListaPacientes observador) {
+        observadores.remove(observador);
+    }
+
+    private void notificarObservadores() {
+        for (vistaListaPacientes observador : observadores) {
+            observador.update();
+        }
+    }
+
     public void modificarCita(CitaMedica citaModificada) {
         for (int i = 0; i < citas.size(); i++) {
             if (citas.get(i).getNumeroIdentificacion().equals(citaModificada.getNumeroIdentificacion())) {
@@ -66,11 +87,12 @@ public class ControladorCitas {
                 break;
             }
         }
+        notificarObservadores();
     }
 
     public List<CitaMedica> getCitas() {
         return citas;
     }
 
-}
 
+}
