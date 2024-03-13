@@ -20,7 +20,7 @@ public class ControladorConsultorios {
 
     public ConsultorioEspecializado buscarPornumeroConsultorio(String id) {
         for (ConsultorioEspecializado consultorioEspecializado : consultorios) {
-            if (consultorioEspecializado.getNumeroConsultorio().equals(id)) {
+            if (consultorioEspecializado.getNumeroConsultorio().equals(id) ) {
                 return consultorioEspecializado;
             }
         }

@@ -10,7 +10,7 @@ public class CitaGeneral extends CitaMedica implements MedicoG {
 
     private String nombreGeneralista;
     private String observacion;
-    private Set<Integer> consultoriosAsignados;
+    private static Set<Integer> consultoriosAsignados;
     private Random random;
 
 
@@ -44,7 +44,7 @@ public class CitaGeneral extends CitaMedica implements MedicoG {
     }
 
     @Override
-    public int asignarConsultorio() {
+    public  int asignarConsultorio() {
         int consultorioAsignado;
 
         if (consultoriosAsignados.size() == 10) {
@@ -57,7 +57,6 @@ public class CitaGeneral extends CitaMedica implements MedicoG {
 
         consultoriosAsignados.add(consultorioAsignado);
 
-        System.out.println("Consultorio asignado: " + consultorioAsignado);
         return consultorioAsignado;
     }
     public double calcularCosto() {

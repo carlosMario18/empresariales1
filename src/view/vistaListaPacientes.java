@@ -132,15 +132,13 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
-
-        // Verificar si el ID existe en la tabla
         boolean idExiste = controlador.idExistente(id);
         CitaGeneral citaGeneral = new CitaGeneral();
         CitaEspecialista citaEspecialista = new CitaEspecialista();
         ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
         if (idExiste) {
-            // Buscar la cita correspondiente al ID
+
             CitaMedica citaSeleccionada = controlador.buscarCitaPorId(id);
 
             // Verificar si se encontró la cita
@@ -338,17 +336,14 @@ public class vistaListaPacientes extends JFrame implements Observador {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // Crear una instancia de ControladorCitas
+
                 ControladorCitas controlador = new ControladorCitas();
                 ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
-                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
 
-                // Crear una instancia de vistaEliminar
                 vistaEliminar vistaEliminarFrame = new vistaEliminar(listaPacientesFrame);
 
-                // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
 
                 listaPacientesFrame.agregarObservadorEliminar(vistaEliminarFrame);

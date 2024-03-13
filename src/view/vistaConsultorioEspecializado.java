@@ -172,10 +172,6 @@ public class vistaConsultorioEspecializado extends javax.swing.JFrame {
         String seccion = txtSeccion.getText();
         String numeroConsultorio = txtNumeroConsultorio.getText();
 
-        if (seccion.isEmpty() || numeroConsultorio.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         if (controlador.idExistente(numeroConsultorio)) {
             JOptionPane.showMessageDialog(this, "Error: El consultorio ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
