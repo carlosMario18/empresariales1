@@ -20,7 +20,7 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
 
     private ControladorConsultorios controladorConsultorios;
     private  ConsultorioEspecializado consultorioEspecializado;
-    public vistaBuscarConsultorio(ControladorConsultorios controladorConsultorios) {
+    public vistaBuscarConsultorio(ControladorConsultorios controladorConsultorios, ConsultorioEspecializado consultorioEspecializado) {
         this.consultorioEspecializado=consultorioEspecializado;
         this.controladorConsultorios = controladorConsultorios;
         initComponents();
@@ -157,7 +157,7 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
         ConsultorioEspecializado consultorio = controladorConsultorios.buscarPornumeroConsultorio(id);
 
         if (consultorio != null) {
-            vistaConsultorioEspecializado vistaModificar = new vistaConsultorioEspecializado(controladorConsultorios);
+            vistaModificarConsultorio vistaModificar = new vistaModificarConsultorio(controladorConsultorios, consultorioEspecializado);
             vistaModificar.setVisible(true);
         } else {
             System.out.println("Fallo");
@@ -204,7 +204,7 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
                 ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
                 // Crear una instancia de vistaBuscarConsultorio y pasar el controlador al constructor
-                vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador);
+                vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador, consultorioEspecializado);
 
                 // Hacer visible el frame de vistaBuscarConsultorio
                 vistaBuscar.setVisible(true);

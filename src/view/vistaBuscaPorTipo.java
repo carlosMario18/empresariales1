@@ -19,6 +19,7 @@ public class vistaBuscaPorTipo extends javax.swing.JFrame {
 
     private ControladorCitas controlador;
     private ControladorConsultorios controladorConsultorios;
+    private  ConsultorioEspecializado consultorioEspecializado;
     public vistaBuscaPorTipo(ControladorCitas controlador, ControladorConsultorios controladorConsultorios) {
         this.controladorConsultorios=controladorConsultorios;
         this.controlador = controlador;
@@ -147,7 +148,7 @@ public class vistaBuscaPorTipo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        vistaBuscarConsultorio vistaBuscarConsultorio = new vistaBuscarConsultorio(controladorConsultorios);
+        vistaBuscarConsultorio vistaBuscarConsultorio = new vistaBuscarConsultorio(controladorConsultorios, consultorioEspecializado);
         vistaBuscarConsultorio.setVisible(true);
     }//GEN-LAST:event_btnAceptarActionPerformed
 

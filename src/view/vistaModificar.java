@@ -37,8 +37,6 @@ public class vistaModificar extends JFrame implements Observable {
     public vistaModificar() {
         observadores = new ArrayList<>();
     }
-
-
     public vistaModificar(ControladorCitas controlador, CitaMedica citaModificar, String tipoCita, vistaListaPacientes listaPacientesFrame) {
         this.controlador = controlador;
         this.citaModificar = citaModificar;

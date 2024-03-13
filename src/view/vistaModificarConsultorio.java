@@ -22,7 +22,7 @@ public class vistaModificarConsultorio extends javax.swing.JFrame {
 
     public vistaModificarConsultorio(ControladorConsultorios controladorConsultorios,  ConsultorioEspecializado consultorioEspecializado) {
         this.controladorConsultorios = controladorConsultorios;
-        this.consultorioEspecializado = consultorioEspecializado;
+        this.consultorioModificar = consultorioEspecializado;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         txtNumeroConsultorio.setText(consultorioEspecializado.getNumeroConsultorio());
