@@ -20,7 +20,7 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
 
     private ControladorConsultorios controladorConsultorios;
     private  ConsultorioEspecializado consultorioEspecializado;
-    public vistaBuscarConsultorio(ControladorConsultorios controladorConsultorios) {
+    public vistaBuscarConsultorio(ControladorConsultorios controladorConsultorios, ConsultorioEspecializado consultorioEspecializado) {
         this.consultorioEspecializado=consultorioEspecializado;
         this.controladorConsultorios = controladorConsultorios;
         initComponents();
@@ -152,12 +152,12 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroConsultorio.getText();
         ConsultorioEspecializado consultorio = controladorConsultorios.buscarPornumeroConsultorio(id);
 
         if (consultorio != null) {
-            vistaConsultorioEspecializado vistaModificar = new vistaConsultorioEspecializado(controladorConsultorios);
+            vistaModificarConsultorio vistaModificar = new vistaModificarConsultorio(controladorConsultorios, consultorio);
             vistaModificar.setVisible(true);
         } else {
             System.out.println("Fallo");
@@ -165,8 +165,8 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
             fallido.setVisible(true);
         }
         dispose();
-
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }
+//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,7 +204,7 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
                 ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
                 // Crear una instancia de vistaBuscarConsultorio y pasar el controlador al constructor
-                vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador);
+                vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador, consultorioEspecializado);
 
                 // Hacer visible el frame de vistaBuscarConsultorio
                 vistaBuscar.setVisible(true);
