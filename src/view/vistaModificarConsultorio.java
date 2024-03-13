@@ -18,7 +18,6 @@ public class vistaModificarConsultorio extends javax.swing.JFrame {
 
     private ControladorConsultorios controladorConsultorios;
     private ConsultorioEspecializado consultorioModificar;
-    private ConsultorioEspecializado consultorioEspecializado;
 
     public vistaModificarConsultorio(ControladorConsultorios controladorConsultorios,  ConsultorioEspecializado consultorioEspecializado) {
         this.controladorConsultorios = controladorConsultorios;

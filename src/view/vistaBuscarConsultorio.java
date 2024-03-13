@@ -152,12 +152,12 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroConsultorio.getText();
         ConsultorioEspecializado consultorio = controladorConsultorios.buscarPornumeroConsultorio(id);
 
         if (consultorio != null) {
-            vistaModificarConsultorio vistaModificar = new vistaModificarConsultorio(controladorConsultorios, consultorioEspecializado);
+            vistaModificarConsultorio vistaModificar = new vistaModificarConsultorio(controladorConsultorios, consultorio);
             vistaModificar.setVisible(true);
         } else {
             System.out.println("Fallo");
@@ -165,8 +165,8 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
             fallido.setVisible(true);
         }
         dispose();
-
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }
+//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
