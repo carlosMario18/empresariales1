@@ -166,6 +166,7 @@ public class vistaBuscar extends JFrame {
             dispose(); // Cerrar el JFrame actual
         } else {
             // Mostrar un mensaje de error si no se encontró la cita
+            System.out.println("Fallo");
             vistaEliminarFallido fallido = new vistaEliminarFallido();
             fallido.setVisible(true);
             dispose(); // Cerrar el JFrame actual

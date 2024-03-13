@@ -128,6 +128,8 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
     }
 
+    public void agregarObservadorModificar(vistaModificar vistaModificar) {
+    }
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion.getText();
@@ -376,7 +378,6 @@ public class vistaListaPacientes extends JFrame implements Observador {
     public JTable tablaListaPacientes;
     private JTextField txtNumeroIdentificacion;
 
-    public void agregarObservadorModificar(vistaModificar vistaModificar) {
-    }
+
     // End of variables declaration//GEN-END:variables
 }
