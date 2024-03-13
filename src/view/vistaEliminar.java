@@ -5,24 +5,49 @@
 package view;
 
 import controller.ControladorCitas;
+import interfaz.Observable;
+import interfaz.Observador;
 import model.CitaMedica;
-import java.util.ArrayList;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author alejandrosanmiguel
  */
-public class vistaEliminar extends javax.swing.JFrame {
+public class vistaEliminar extends JFrame implements Observable{
 
     private vistaListaPacientes listaPacientesFrame;
 
+    private ArrayList<Observador> observadores;
 
     private ControladorCitas controlador;
     /**
      * Creates new form vistaEliminar
      */
+    public vistaEliminar() {
+        observadores = new ArrayList<>();
+    }
+
+    @Override
+    public void agregarObservador(Observador observador) {
+        observadores.add(observador);
+    }
+    @Override
+    public void eliminarObservador(Observador observador) {
+        observadores.remove(observador);
+    }
+
+    @Override
+    public void notificar() {
+        if (observadores != null) { // Verifica si observadores es diferente de null
+            for (Observador observador : observadores) {
+                observador.update(); // Llama al método update() en cada observador
+            }
+        }
+    }
+
     public vistaEliminar(ControladorCitas controlador) {
         this.controlador = controlador;
         initComponents();
@@ -32,6 +57,7 @@ public class vistaEliminar extends javax.swing.JFrame {
 
     public vistaEliminar(vistaListaPacientes listaPacientesFrame) {
         this.listaPacientesFrame = listaPacientesFrame;
+        observadores = new ArrayList<Observador>();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -180,6 +206,7 @@ public class vistaEliminar extends javax.swing.JFrame {
             fallido.setVisible(true);
         }
 
+        notificar();
 
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -224,6 +251,8 @@ public class vistaEliminar extends javax.swing.JFrame {
 
 
                 vistaEliminar.setVisible(true);
+
+                listaPacientesFrame.agregarObservadorEliminar(vistaEliminar);
 
             }
         });
