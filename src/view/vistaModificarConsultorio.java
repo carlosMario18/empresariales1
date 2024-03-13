@@ -190,19 +190,14 @@ public class vistaModificarConsultorio extends javax.swing.JFrame {
         String seccion = txtSeccion.getText();
         String numeroConsultorio = txtNumeroConsultorio.getText();
 
-        if (seccion.isEmpty() || numeroConsultorio.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         if (controladorConsultorios.idExistente(numeroConsultorio)) {
             JOptionPane.showMessageDialog(this, "Error: El consultorio ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-
         consultorioModificar.setNumeroConsultorio(numeroConsultorio);
         consultorioModificar.setSeccion(seccion);
-
+        controladorConsultorios.modificarCita(consultorioModificar);
 
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);

@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 
 import javax.swing.*;
 
@@ -16,8 +17,9 @@ public class vistaBuscarPorTipoEliminar extends javax.swing.JFrame {
 
 
     private ControladorCitas controlador;
-    public vistaBuscarPorTipoEliminar(ControladorCitas controlador) {
-
+    private ControladorConsultorios controladorConsultorios;
+    public vistaBuscarPorTipoEliminar(ControladorCitas controlador,ControladorConsultorios controladorConsultorios) {
+        this.controladorConsultorios = controladorConsultorios;
         this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -145,7 +147,7 @@ public class vistaBuscarPorTipoEliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscaConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaConsultorioActionPerformed
-        vistaEliminarConsultorio vistaEliminarConsultorio = new vistaEliminarConsultorio();
+        vistaEliminarConsultorio vistaEliminarConsultorio = new vistaEliminarConsultorio(controladorConsultorios);
         vistaEliminarConsultorio.setVisible(true);
     }//GEN-LAST:event_btnBuscaConsultorioActionPerformed
 
@@ -185,9 +187,10 @@ public class vistaBuscarPorTipoEliminar extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ControladorCitas controlador = new ControladorCitas();
+                ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
                 // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-                vistaBuscarPorTipoEliminar vistaBuscaPorTipo= new vistaBuscarPorTipoEliminar(controlador);
+                vistaBuscarPorTipoEliminar vistaBuscaPorTipo= new vistaBuscarPorTipoEliminar(controlador,controladorConsultorios);
 
                 // Hacer visible el frame de vistaListaPacientes
                 vistaBuscaPorTipo.setVisible(true);

@@ -33,9 +33,8 @@ public class vistaIngreso extends JFrame {
     private vistaListaPacientes listaPacientesFrame;
     private  CitaMedica citaMedica;
     private ControladorConsultorios controladorConsultorio;
-    /**
-     * Creates new form vistaIngreso
-     */
+
+
     public vistaIngreso() {
 
         controlador = new ControladorCitas();
@@ -291,7 +290,7 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnEliminarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador);
+        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador, controladorConsultorio);
         vistaBuscarPorTipoEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
