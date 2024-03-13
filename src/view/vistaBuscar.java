@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import model.CitaMedica;
 
 import javax.swing.*;
@@ -16,10 +17,12 @@ import javax.swing.*;
 public class vistaBuscar extends JFrame {
 
     private ControladorCitas controlador;
+    private ControladorConsultorios controladorConsultorios;
     /**
      * Creates new form vistaBuscar
      */
     public vistaBuscar(ControladorCitas controlador) {
+
        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -150,18 +153,19 @@ public class vistaBuscar extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
         String id = txtNumeroIdentificacion3.getText();
         CitaMedica citaModificar = controlador.buscarCitaPorId(id);
-        vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
-// Verificar si se encontró la cita
+        vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
+        System.out.println(controlador.idExistente(id));
+        System.out.println(citaModificar);
+        // Verificar si se encontró la cita
         if (citaModificar != null) {
             // Obtener el tipo de cita de la cita encontrada
             String tipoCita = citaModificar.getTipoCita();
 
             // Abrir el JFrame vistaModificar y pasar la cita a modificar y el tipo de cita
-            vistaModificar vistaModificar = new vistaModificar(controlador, citaModificar, tipoCita,listaPacientesFrame);
+            vistaModificar vistaModificar = new vistaModificar(controlador, citaModificar, tipoCita, listaPacientesFrame);
             vistaModificar.setVisible(true);
             dispose(); // Cerrar el JFrame actual
         } else {
@@ -171,7 +175,8 @@ public class vistaBuscar extends JFrame {
             fallido.setVisible(true);
             dispose(); // Cerrar el JFrame actual
         }
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }
+//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import model.CitaGeneral;
 import model.CitaMedica;
 import model.ConsultorioEspecializado;
@@ -20,6 +21,7 @@ import java.time.ZoneId;
 public class vistaCitaGeneral extends JFrame {
 
 
+    private ControladorConsultorios controladorConsultorios;
     private ControladorCitas controlador;
     /**
      * Creates new form vistaCitaGeneral
@@ -275,7 +277,7 @@ public class vistaCitaGeneral extends JFrame {
         String observacion = txtObservaciones.getText();
         CitaMedica nuevaCita = new CitaGeneral(id, nombre, fecha, costo, "Medico General", nomGeneralista, observacion);
         controlador.insertarCita(nuevaCita);
-        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes( controlador);
+        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes( controlador, controladorConsultorios);
         vistaListaPacientes.actualizarTablaCitas();
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);

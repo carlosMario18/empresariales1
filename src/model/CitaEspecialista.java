@@ -40,6 +40,7 @@ public class CitaEspecialista extends CitaMedica {
         return consultorio;
     }
 
+
     public void setConsultorio(ConsultorioEspecializado consultorio) {
         this.consultorio = consultorio;
     }

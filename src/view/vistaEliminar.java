@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import interfaz.Observable;
 import interfaz.Observador;
 import model.CitaMedica;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class vistaEliminar extends JFrame implements Observable{
 
     private vistaListaPacientes listaPacientesFrame;
-
+    private static ControladorConsultorios controladorConsultorios;
     private ArrayList<Observador> observadores;
 
     private ControladorCitas controlador;
@@ -189,12 +190,8 @@ public class vistaEliminar extends JFrame implements Observable{
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-
         String idCitaEliminar = txtNumeroIdentificacion3.getText();
-
-
         CitaMedica citaEliminar = controlador.buscarCitaPorId(idCitaEliminar);
-
 
         if (citaEliminar != null) {
             controlador.eliminarCita(citaEliminar);
@@ -247,7 +244,7 @@ public class vistaEliminar extends JFrame implements Observable{
                 vistaEliminar vistaEliminar = new vistaEliminar(controlador);
 
 
-                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
 
 
                 vistaEliminar.setVisible(true);

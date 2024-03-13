@@ -1,4 +1,5 @@
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import view.vistaIngreso;
 import view.vistaListaPacientes;
 
@@ -15,9 +16,10 @@ public class Main {
 
         // Crear una instancia de ControladorCitas
         ControladorCitas controlador = new ControladorCitas();
+        ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
         // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-        vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+        vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador,controladorConsultorios);
         listaPacientesFrame.actualizarTablaCitas(); // Llamada al método en la instancia creada
 
         // Crear una instancia de vistaIngreso

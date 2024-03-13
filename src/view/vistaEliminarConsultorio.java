@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.*;
+
 /**
  *
  * @author alejandrosanmiguel
@@ -14,7 +16,9 @@ public class vistaEliminarConsultorio extends javax.swing.JFrame {
      * Creates new form vistaEliminarConsultorio
      */
     public vistaEliminarConsultorio() {
+
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -39,7 +43,7 @@ public class vistaEliminarConsultorio extends javax.swing.JFrame {
 
         panelCabeza.setBackground(new java.awt.Color(248, 245, 230));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/iconPersona.jpeg"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/iconPersona.jpeg"))); // NOI18N
 
         labelTitulo.setBackground(new java.awt.Color(0, 0, 0));
         labelTitulo.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N

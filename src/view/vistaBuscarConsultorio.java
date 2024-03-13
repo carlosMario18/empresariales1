@@ -4,6 +4,11 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import controller.ControladorConsultorios;
+import model.CitaMedica;
+import model.ConsultorioEspecializado;
+
 import javax.swing.*;
 
 /**
@@ -12,10 +17,12 @@ import javax.swing.*;
  */
 public class vistaBuscarConsultorio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form vistaBuscarConsultorio
-     */
-    public vistaBuscarConsultorio() {
+
+    private ControladorConsultorios controladorConsultorios;
+    private  ConsultorioEspecializado consultorioEspecializado;
+    public vistaBuscarConsultorio(ControladorConsultorios controladorConsultorios) {
+        this.consultorioEspecializado=consultorioEspecializado;
+        this.controladorConsultorios = controladorConsultorios;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -146,8 +153,19 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        vistaEliminarExito vista = new vistaEliminarExito();
-        vista.setVisible(true);
+        String id = txtNumeroConsultorio.getText();
+        ConsultorioEspecializado consultorio = controladorConsultorios.buscarPornumeroConsultorio(id);
+
+        if (consultorio != null) {
+            vistaConsultorioEspecializado vistaModificar = new vistaConsultorioEspecializado(controladorConsultorios);
+            vistaModificar.setVisible(true);
+        } else {
+            System.out.println("Fallo");
+            vistaEliminarFallido fallido = new vistaEliminarFallido();
+            fallido.setVisible(true);
+        }
+        dispose();
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -180,7 +198,16 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaBuscarConsultorio().setVisible(true);
+
+                // Crear una instancia de ControladorConsultorios
+                ControladorConsultorios controlador = new ControladorConsultorios();
+                ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
+
+                // Crear una instancia de vistaBuscarConsultorio y pasar el controlador al constructor
+                vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador);
+
+                // Hacer visible el frame de vistaBuscarConsultorio
+                vistaBuscar.setVisible(true);
             }
         });
     }

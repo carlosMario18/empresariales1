@@ -5,11 +5,9 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import interfaz.Observador;
-import model.CitaEspecialista;
-import model.CitaGeneral;
-import model.CitaMedica;
-import model.Hospital;
+import model.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -36,11 +34,12 @@ public class vistaListaPacientes extends JFrame implements Observador {
 
     private ControladorCitas controlador;
 
-
+    private ControladorConsultorios controladorConsultorios;
     /**
      * Creates new form vistaListaPacientes
      */
-    public vistaListaPacientes(ControladorCitas controlador) {
+    public vistaListaPacientes(ControladorCitas controlador, ControladorConsultorios controladorConsultorios) {
+        this.controladorConsultorios = controladorConsultorios;
         this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -138,6 +137,7 @@ public class vistaListaPacientes extends JFrame implements Observador {
         boolean idExiste = controlador.idExistente(id);
         CitaGeneral citaGeneral = new CitaGeneral();
         CitaEspecialista citaEspecialista = new CitaEspecialista();
+        ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
         if (idExiste) {
             // Buscar la cita correspondiente al ID
@@ -164,7 +164,9 @@ public class vistaListaPacientes extends JFrame implements Observador {
                     citaEspecialista = (CitaEspecialista) citaSeleccionada;
                     mensaje += "<b>Especialidad: </b>" + citaEspecialista.getEspecialidad() + "<br>";
                     mensaje += "<b>Nombre Especialista: </b> " + citaEspecialista.getNombreEspecialista() + "<br>";
-                    mensaje +="<b>Detalles consultorio asignado: </b> " + citaEspecialista.getConsultorio() + "<br>";
+                    mensaje += "<b>Número de Consultorio: </b>" + consultorioEspecializado.getNumeroConsultorio() + "<br>";
+                    mensaje += "<b>Sección: </b>" + consultorioEspecializado.getSeccion() + "<br>";
+
                 }
 
                 // Agregar la información del hospital
@@ -348,9 +350,10 @@ public class vistaListaPacientes extends JFrame implements Observador {
             public void run() {
                 // Crear una instancia de ControladorCitas
                 ControladorCitas controlador = new ControladorCitas();
+                ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
                 // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
 
                 // Crear una instancia de vistaEliminar
                 vistaEliminar vistaEliminarFrame = new vistaEliminar(listaPacientesFrame);

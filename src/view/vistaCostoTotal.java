@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import model.CitaMedica;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.util.List;
 public class vistaCostoTotal extends JFrame {
 
     private ControladorCitas controlador;
+    private static ControladorConsultorios controladorConsultorios;
 
     public vistaCostoTotal(ControladorCitas controlador) {
         this.controlador = controlador;
@@ -258,7 +260,7 @@ public class vistaCostoTotal extends JFrame {
                 ControladorCitas controlador = new ControladorCitas();
 
                 // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador,controladorConsultorios);
                 vistaCostoTotal vistaCostoTotal = new vistaCostoTotal(controlador);
                 vistaCostoTotal.setVisible(true);
                 // Hacer visible el frame de vistaListaPacientes

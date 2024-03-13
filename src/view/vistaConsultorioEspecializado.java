@@ -4,6 +4,10 @@
  */
 package view;
 
+import controller.ControladorCitas;
+import controller.ControladorConsultorios;
+import model.ConsultorioEspecializado;
+
 import javax.swing.*;
 
 /**
@@ -12,10 +16,11 @@ import javax.swing.*;
  */
 public class vistaConsultorioEspecializado extends javax.swing.JFrame {
 
-    /**
+    private ControladorConsultorios controlador;    /**
      * Creates new form vistaConsultorioEspecializado
      */
-    public vistaConsultorioEspecializado() {
+    public vistaConsultorioEspecializado(ControladorConsultorios  controlador) {
+        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -159,13 +164,41 @@ public class vistaConsultorioEspecializado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+       limpiarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-    }//GEN-LAST:event_btnGuardarActionPerformed
+        String seccion = txtSeccion.getText();
+        String numeroConsultorio = txtNumeroConsultorio.getText();
 
+        if (seccion.isEmpty() || numeroConsultorio.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (controlador.idExistente(numeroConsultorio)) {
+            JOptionPane.showMessageDialog(this, "Error: El consultorio ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        ConsultorioEspecializado consultorio = new ConsultorioEspecializado();
+        consultorio.setNumeroConsultorio(numeroConsultorio);
+        consultorio.setSeccion(seccion);
+
+        controlador.insertarConsultorio(consultorio);
+
+        vistaGuardarConExito exito = new vistaGuardarConExito();
+        exito.setVisible(true);
+
+        limpiarCampos();
+
+        System.out.println(consultorio.getNumeroConsultorio() + consultorio.getSeccion());
+    }
+//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void limpiarCampos() {
+        txtSeccion.setText("");
+        txtNumeroConsultorio.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -196,7 +229,10 @@ public class vistaConsultorioEspecializado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaConsultorioEspecializado().setVisible(true);
+
+                ControladorConsultorios controlador = new ControladorConsultorios();
+                // Pasar la instancia del controlador al constructor de vistaCitaGeneral
+                new vistaConsultorioEspecializado(controlador).setVisible(true);
             }
         });
     }

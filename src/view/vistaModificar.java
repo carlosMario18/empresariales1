@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import interfaz.Observable;
 import interfaz.Observador;
 import model.CitaMedica;
@@ -22,6 +23,7 @@ import java.util.Date;
 public class vistaModificar extends JFrame implements Observable {
 
     private ControladorCitas controlador;
+    private static ControladorConsultorios controladorConsultorios;
     private CitaMedica citaModificar;
     private String tipoCita;
     private vistaListaPacientes listaPacientesFrame;
@@ -365,7 +367,7 @@ public class vistaModificar extends JFrame implements Observable {
                     }
                 };
                 String tipoCita = ""; // Define el tipo de cita adecuado
-                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador);
+                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
                 vistaModificar vistaModificar = new vistaModificar(controlador, citaModificar, tipoCita, listaPacientesFrame);
                 vistaModificar.setVisible(true);
 
