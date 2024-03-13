@@ -199,7 +199,7 @@ public class vistaModificarConsultorio extends javax.swing.JFrame {
         }
         ConsultorioEspecializado consultorioModificado = new ConsultorioEspecializado(numeroConsultorio, seccion);
 
-        controladorConsultorios.modificarCita(consultorioModificado);
+        controladorConsultorios.modificarConsultorio(consultorioModificado);
 
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);

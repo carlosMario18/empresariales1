@@ -41,7 +41,7 @@ public class ControladorConsultorios {
         return numero;
     }
 
-    public void modificarCita(ConsultorioEspecializado consultorioModificado) {
+    public void modificarConsultorio(ConsultorioEspecializado consultorioModificado) {
         for (int i = 0; i < consultorios.size(); i++) {
             if (consultorios.get(i).getNumeroConsultorio().equals(consultorioModificado.getNumeroConsultorio())) {
                 consultorios.set(i, consultorioModificado);
@@ -50,12 +50,4 @@ public class ControladorConsultorios {
         }
     }
 
-    public void modificarCita(ConsultorioEspecializado consultorioModificado) {
-        for (int i = 0; i < consultorios.size(); i++) {
-            if (consultorios.get(i).getNumeroConsultorio().equals(consultorioModificado.getNumeroConsultorio())) {
-                consultorios.set(i, consultorioModificado);
-                break;
-            }
-        }
-    }
 }
