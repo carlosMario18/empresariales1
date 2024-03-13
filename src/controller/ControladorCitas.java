@@ -23,8 +23,6 @@ public class ControladorCitas {
         notificarObservadores();
 
     }
-
-
     public CitaMedica buscarCitaPorId(String id) {
         for (CitaMedica cita : citas) {
             if (cita.getNumeroIdentificacion().equals(id)) {
@@ -33,11 +31,9 @@ public class ControladorCitas {
         }
         return null;
     }
-
     public List<CitaMedica> listarCitas() {
         return citas;
     }
-
     public double calcularCostoTotal() {
         double costoTotal =0;
         for (CitaMedica cita : citas) {
@@ -45,7 +41,6 @@ public class ControladorCitas {
         }
         return costoTotal;
     }
-
     public double calcularCostoTotalPorTipo(String tipoCita) {
         double costoTotal = 0;
         for (CitaMedica cita : citas) {
@@ -55,7 +50,6 @@ public class ControladorCitas {
         }
         return costoTotal;
     }
-
     public boolean idExistente(String numeroIdentificacion) {
         for (CitaMedica cita : citas) {
             if (cita.getNumeroIdentificacion().equals(numeroIdentificacion)) {
@@ -64,8 +58,6 @@ public class ControladorCitas {
         }
         return false;
     }
-
-
     public void agregarObservador(vistaListaPacientes observador) {
         observadores.add(observador);
     }
@@ -79,7 +71,6 @@ public class ControladorCitas {
             observador.update();
         }
     }
-
     public void modificarCita(CitaMedica citaModificada) {
         for (int i = 0; i < citas.size(); i++) {
             if (citas.get(i).getNumeroIdentificacion().equals(citaModificada.getNumeroIdentificacion())) {
@@ -89,7 +80,6 @@ public class ControladorCitas {
         }
         notificarObservadores();
     }
-
     public List<CitaMedica> getCitas() {
         return citas;
     }

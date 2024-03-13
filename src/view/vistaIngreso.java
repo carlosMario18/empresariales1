@@ -5,6 +5,7 @@
 package view;
 
 import com.toedter.calendar.JDateChooser;
+import controller.ControladorConsultorios;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ public class vistaIngreso extends JFrame {
     private ControladorCitas controlador;
     private vistaListaPacientes listaPacientesFrame;
     private  CitaMedica citaMedica;
+    private ControladorConsultorios controladorConsultorio;
     /**
      * Creates new form vistaIngreso
      */
@@ -38,6 +40,7 @@ public class vistaIngreso extends JFrame {
 
         controlador = new ControladorCitas();
         citaMedica = new CitaGeneral();
+        controladorConsultorio = new ControladorConsultorios();
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -64,6 +67,7 @@ public class vistaIngreso extends JFrame {
         btnAcercaDe = new javax.swing.JButton();
         btnCitaGeneral = new javax.swing.JButton();
         btnCitaEspecialista = new javax.swing.JButton();
+        btnConsultorioEspecializado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +153,13 @@ public class vistaIngreso extends JFrame {
             }
         });
 
+        btnConsultorioEspecializado.setText("Con.Especializado");
+        btnConsultorioEspecializado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultorioEspecializadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,7 +172,9 @@ public class vistaIngreso extends JFrame {
                                         .addComponent(btnCitaGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnCostoTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnConsultorioEspecializado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(btnCitaEspecialista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -183,7 +196,8 @@ public class vistaIngreso extends JFrame {
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnCitaGeneral)
-                                        .addComponent(btnCitaEspecialista))
+                                        .addComponent(btnCitaEspecialista)
+                                        .addComponent(btnConsultorioEspecializado))
                                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -221,8 +235,13 @@ public class vistaIngreso extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConsultorioEspecializadoActionPerformed(ActionEvent evt) {
+        vistaConsultorioEspecializado vistaConsultorioEspecializado = new vistaConsultorioEspecializado(controladorConsultorio);
+        vistaConsultorioEspecializado.setVisible(true);
+    }
+
     private void btnCitaEspecialistaActionPerformed(ActionEvent evt) {
-        vistaCitaEspecialista vistaCitaEspecialista = new vistaCitaEspecialista(controlador);
+        vistaCitaEspecialista vistaCitaEspecialista = new vistaCitaEspecialista(controlador, controladorConsultorio);
         vistaCitaEspecialista.setVisible(true);
     }
 
@@ -231,7 +250,7 @@ public class vistaIngreso extends JFrame {
         vistaCitaGeneral.setVisible(true);
     }
 
-    // Instancia compartida
+
 
     public void setListaPacientesFrame(vistaListaPacientes listaPacientesFrame) {
         this.listaPacientesFrame = listaPacientesFrame;
@@ -255,15 +274,15 @@ public class vistaIngreso extends JFrame {
 
     private void btnListaPacientesActionPerformed(ActionEvent evt) {
         // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes(controlador);
+        vistaListaPacientes vistaListaPacientes = new vistaListaPacientes(controlador, controladorConsultorio);
 
         // Hacer visible el frame de vistaListaPacientes
         vistaListaPacientes.setVisible(true);
     }
 
     private void btnModificarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        vistaBuscar vistaBuscar = new vistaBuscar(controlador);
-        vistaBuscar.setVisible(true);
+        vistaBuscaPorTipo vistaBuscaPorTipo = new vistaBuscaPorTipo(controlador, controladorConsultorio);
+        vistaBuscaPorTipo.setVisible(true);
     }//GEN-LAST:event_btnModificarActionPerformed
     private void btnAcercaDeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
 
@@ -272,8 +291,8 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnEliminarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        vistaEliminar vistaEliminar = new vistaEliminar(controlador);
-        vistaEliminar.setVisible(true);
+        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador);
+        vistaBuscarPorTipoEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -315,6 +334,7 @@ public class vistaIngreso extends JFrame {
     private javax.swing.JButton btnAcercaDe;
     private javax.swing.JButton btnCitaEspecialista;
     private javax.swing.JButton btnCitaGeneral;
+    private javax.swing.JButton btnConsultorioEspecializado;
     private javax.swing.JButton btnCostoTotal;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnListaPacientes;

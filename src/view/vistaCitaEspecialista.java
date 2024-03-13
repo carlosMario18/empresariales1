@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControladorCitas;
+import controller.ControladorConsultorios;
 import model.CitaEspecialista;
 import model.CitaGeneral;
 import model.CitaMedica;
@@ -21,11 +22,13 @@ import java.time.ZoneId;
 public class vistaCitaEspecialista extends JFrame {
 
     private ControladorCitas controlador;
+    private ControladorConsultorios controladorConsultorios;
     /**
      * Creates new form vistaMedicoEspecialista
      */
-    public vistaCitaEspecialista(ControladorCitas  controlador) {
+    public vistaCitaEspecialista(ControladorCitas  controlador, ControladorConsultorios controladorConsultorios) {
         this.controlador = controlador;
+        this.controladorConsultorios = controladorConsultorios;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -272,9 +275,12 @@ public class vistaCitaEspecialista extends JFrame {
         }
 
 
-        String numeroConsultorio = "A302";
-        String seccion = "Norte";
-        ConsultorioEspecializado consultorio = new ConsultorioEspecializado(numeroConsultorio, seccion);
+        ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
+        String numeroConsultorio = consultorioEspecializado.getNumeroConsultorio();
+        String seccion = consultorioEspecializado.getSeccion();
+
+        ConsultorioEspecializado consultorio= new ConsultorioEspecializado(numeroConsultorio,seccion);
+
 
 
 

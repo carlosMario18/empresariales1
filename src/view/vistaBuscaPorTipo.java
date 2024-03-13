@@ -6,59 +6,22 @@ package view;
 
 import controller.ControladorCitas;
 import controller.ControladorConsultorios;
-import interfaz.Observable;
-import interfaz.Observador;
-import model.CitaMedica;
+import model.ConsultorioEspecializado;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 /**
  *
  * @author alejandrosanmiguel
  */
-public class vistaEliminar extends JFrame implements Observable{
+public class vistaBuscaPorTipo extends javax.swing.JFrame {
 
-    private vistaListaPacientes listaPacientesFrame;
-    private static ControladorConsultorios controladorConsultorios;
-    private ArrayList<Observador> observadores;
 
     private ControladorCitas controlador;
-    /**
-     * Creates new form vistaEliminar
-     */
-    public vistaEliminar() {
-        observadores = new ArrayList<>();
-    }
-
-    @Override
-    public void agregarObservador(Observador observador) {
-        observadores.add(observador);
-    }
-    @Override
-    public void eliminarObservador(Observador observador) {
-        observadores.remove(observador);
-    }
-
-    @Override
-    public void notificar() {
-        if (observadores != null) { // Verifica si observadores es diferente de null
-            for (Observador observador : observadores) {
-                observador.update(); // Llama al método update() en cada observador
-            }
-        }
-    }
-
-    public vistaEliminar(ControladorCitas controlador) {
+    private ControladorConsultorios controladorConsultorios;
+    public vistaBuscaPorTipo(ControladorCitas controlador, ControladorConsultorios controladorConsultorios) {
+        this.controladorConsultorios=controladorConsultorios;
         this.controlador = controlador;
-        initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-    }
-
-    public vistaEliminar(vistaListaPacientes listaPacientesFrame) {
-        this.listaPacientesFrame = listaPacientesFrame;
-        observadores = new ArrayList<Observador>();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -72,14 +35,13 @@ public class vistaEliminar extends JFrame implements Observable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPrincipalVistaEliminar = new javax.swing.JPanel();
+        panelPrincipalVistaBuscar = new javax.swing.JPanel();
         panelCabeza = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         labelTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        labelNumeroIdentificacion = new javax.swing.JLabel();
-        txtNumeroIdentificacion3 = new javax.swing.JTextArea();
-        btnAceptar = new javax.swing.JButton();
+        btnConsultorio = new javax.swing.JButton();
+        btnBuscaPaciente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,7 +52,7 @@ public class vistaEliminar extends JFrame implements Observable{
         labelTitulo.setBackground(new java.awt.Color(0, 0, 0));
         labelTitulo.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        labelTitulo.setText("Eliminar Paciente");
+        labelTitulo.setText("Selecciona.. ");
 
         javax.swing.GroupLayout panelCabezaLayout = new javax.swing.GroupLayout(panelCabeza);
         panelCabeza.setLayout(panelCabezaLayout);
@@ -116,18 +78,20 @@ public class vistaEliminar extends JFrame implements Observable{
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 16), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 16), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        labelNumeroIdentificacion.setText("Numero de Identificación: ");
-
-        txtNumeroIdentificacion3.setColumns(20);
-        txtNumeroIdentificacion3.setRows(5);
-
-        btnAceptar.setText("Eliminar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultorio.setText("Consultorio");
+        btnConsultorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnConsultorioActionPerformed(evt);
+            }
+        });
+
+        btnBuscaPaciente.setText("Cita");
+        btnBuscaPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaPacienteActionPerformed(evt);
             }
         });
 
@@ -135,39 +99,33 @@ public class vistaEliminar extends JFrame implements Observable{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(labelNumeroIdentificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNumeroIdentificacion3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(167, 167, 167)
-                                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(btnBuscaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(btnConsultorio)
+                                .addGap(54, 54, 54))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addGap(62, 62, 62)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNumeroIdentificacion3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addComponent(btnAceptar)
-                                .addGap(31, 31, 31))
+                                        .addComponent(btnConsultorio)
+                                        .addComponent(btnBuscaPaciente))
+                                .addContainerGap(79, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelPrincipalVistaEliminarLayout = new javax.swing.GroupLayout(panelPrincipalVistaEliminar);
-        panelPrincipalVistaEliminar.setLayout(panelPrincipalVistaEliminarLayout);
-        panelPrincipalVistaEliminarLayout.setHorizontalGroup(
-                panelPrincipalVistaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPrincipalVistaBuscarLayout = new javax.swing.GroupLayout(panelPrincipalVistaBuscar);
+        panelPrincipalVistaBuscar.setLayout(panelPrincipalVistaBuscarLayout);
+        panelPrincipalVistaBuscarLayout.setHorizontalGroup(
+                panelPrincipalVistaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panelCabeza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        panelPrincipalVistaEliminarLayout.setVerticalGroup(
-                panelPrincipalVistaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelPrincipalVistaEliminarLayout.createSequentialGroup()
+        panelPrincipalVistaBuscarLayout.setVerticalGroup(
+                panelPrincipalVistaBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPrincipalVistaBuscarLayout.createSequentialGroup()
                                 .addComponent(panelCabeza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,36 +135,26 @@ public class vistaEliminar extends JFrame implements Observable{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelPrincipalVistaEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelPrincipalVistaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelPrincipalVistaEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelPrincipalVistaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
-        String idCitaEliminar = txtNumeroIdentificacion3.getText();
-        CitaMedica citaEliminar = controlador.buscarCitaPorId(idCitaEliminar);
-
-        if (citaEliminar != null) {
-            controlador.eliminarCita(citaEliminar);
-            vistaEliminarExito exito = new vistaEliminarExito();
-            exito.setVisible(true);
-
-        } else {
-            vistaEliminarFallido fallido = new vistaEliminarFallido();
-            fallido.setVisible(true);
-        }
-
-        notificar();
-
-        dispose();
+    private void btnConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        vistaBuscarConsultorio vistaBuscarConsultorio = new vistaBuscarConsultorio(controladorConsultorios);
+        vistaBuscarConsultorio.setVisible(true);
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
+        vistaBuscar vistaBuscar = new vistaBuscar(controlador);
+        vistaBuscar.setVisible(true);
+    }//GEN-LAST:event_btnBuscaPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +163,7 @@ public class vistaEliminar extends JFrame implements Observable{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -225,13 +173,13 @@ public class vistaEliminar extends JFrame implements Observable{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaBuscaPorTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaBuscaPorTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaBuscaPorTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaBuscaPorTipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -239,31 +187,24 @@ public class vistaEliminar extends JFrame implements Observable{
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ControladorCitas controlador = new ControladorCitas();
+                ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
+                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
+                vistaBuscaPorTipo vistaBuscaPorTipo= new vistaBuscaPorTipo(controlador,controladorConsultorios);
 
-                vistaEliminar vistaEliminar = new vistaEliminar(controlador);
-
-
-                vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
-
-
-                vistaEliminar.setVisible(true);
-
-                listaPacientesFrame.agregarObservadorEliminar(vistaEliminar);
-
+                // Hacer visible el frame de vistaListaPacientes
+                vistaBuscaPorTipo.setVisible(true);
             }
         });
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnConsultorio;
+    private javax.swing.JButton btnBuscaPaciente;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelNumeroIdentificacion;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelCabeza;
-    private javax.swing.JPanel panelPrincipalVistaEliminar;
-    private javax.swing.JTextArea txtNumeroIdentificacion3;
+    private javax.swing.JPanel panelPrincipalVistaBuscar;
     // End of variables declaration//GEN-END:variables
 }

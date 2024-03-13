@@ -10,6 +10,10 @@ public class ConsultorioEspecializado {
         this.seccion = seccion;
     }
 
+    public ConsultorioEspecializado() {
+
+    }
+
     public String getNumeroConsultorio() {
         return numeroConsultorio;
     }
@@ -26,11 +30,4 @@ public class ConsultorioEspecializado {
         this.seccion = seccion;
     }
 
-    @Override
-    public String toString() {
-        return "ConsultorioEspecializado{" +
-                "numeroConsultorio=" + numeroConsultorio +
-                ", seccion='" + seccion + '\'' +
-                '}';
-    }
 }
