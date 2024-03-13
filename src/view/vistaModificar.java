@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
  * @author alejandrosanmiguel
  */
 public class vistaModificar extends JFrame implements Observable {
@@ -37,6 +36,7 @@ public class vistaModificar extends JFrame implements Observable {
     public vistaModificar() {
         observadores = new ArrayList<>();
     }
+
     public vistaModificar(ControladorCitas controlador, CitaMedica citaModificar, String tipoCita, vistaListaPacientes listaPacientesFrame) {
         this.controlador = controlador;
         this.citaModificar = citaModificar;
@@ -45,7 +45,6 @@ public class vistaModificar extends JFrame implements Observable {
         this.observadores = new ArrayList<>();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // Establecer contenido por defecto en los JTextArea
         textNombre.setText(citaModificar.getNombrePaciente());
         jDateChooser1.setDate(Date.from(citaModificar.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         boxTipoCita.setSelectedItem(citaModificar.getTipoCita());
@@ -143,7 +142,7 @@ public class vistaModificar extends JFrame implements Observable {
         textNombre.setColumns(20);
         textNombre.setRows(5);
 
-        boxTipoCita.setModel(new DefaultComboBoxModel<>(new String[] { "Medico General", "Medico Especialista"}));
+        boxTipoCita.setModel(new DefaultComboBoxModel<>(new String[]{"Medico General", "Medico Especialista"}));
         boxTipoCita.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 boxTipoCitaItemStateChanged(evt);
@@ -272,11 +271,11 @@ public class vistaModificar extends JFrame implements Observable {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
         String nuevoNombre = textNombre.getText();
-        Date fechaSeleccionada = jDateChooser1.getDate(); // Obtener la fecha seleccionada del JDateChooser
+        Date fechaSeleccionada = jDateChooser1.getDate();
         String nuevoTipoCita = (String) boxTipoCita.getSelectedItem();
         String nuevoCosto = txtCosto.getText();
 
-        if (nuevoNombre.isEmpty() || fechaSeleccionada == null || nuevoTipoCita.isEmpty() || nuevoCosto.isEmpty()){
+        if (nuevoNombre.isEmpty() || fechaSeleccionada == null || nuevoTipoCita.isEmpty() || nuevoCosto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -297,20 +296,16 @@ public class vistaModificar extends JFrame implements Observable {
             return;
         }
 
-        // Notificar a los observadores después de modificar la cita
         notificar();
 
-        // Modificar la cita en el ControladorCitas
         citaModificar.setNombrePaciente(nuevoNombre);
         citaModificar.setFecha(fecha);
         citaModificar.setTipoCita(nuevoTipoCita);
         citaModificar.setCosto(costo);
         controlador.modificarCita(citaModificar);
 
-        // Actualizar la tabla en vistaListaPaciente
         listaPacientesFrame.actualizarTablaCitas();
 
-        // Cerrar la ventana de vistaModificar
         dispose();
     }
 
@@ -328,7 +323,7 @@ public class vistaModificar extends JFrame implements Observable {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

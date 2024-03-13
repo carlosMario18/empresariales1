@@ -199,14 +199,11 @@ public class vistaBuscarConsultorio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                // Crear una instancia de ControladorConsultorios
                 ControladorConsultorios controlador = new ControladorConsultorios();
                 ConsultorioEspecializado consultorioEspecializado = new ConsultorioEspecializado();
 
-                // Crear una instancia de vistaBuscarConsultorio y pasar el controlador al constructor
                 vistaBuscarConsultorio vistaBuscar = new vistaBuscarConsultorio(controlador, consultorioEspecializado);
 
-                // Hacer visible el frame de vistaBuscarConsultorio
                 vistaBuscar.setVisible(true);
             }
         });

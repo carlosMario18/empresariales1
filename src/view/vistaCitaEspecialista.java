@@ -338,7 +338,6 @@ public class vistaCitaEspecialista extends JFrame {
             public void run() {
 
                 ControladorCitas controlador = new ControladorCitas();
-                // Pasar la instancia del controlador al constructor de vistaCitaGeneral
                 new vistaCitaGeneral(controlador).setVisible(true);
             }
         });

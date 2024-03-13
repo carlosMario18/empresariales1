@@ -198,17 +198,14 @@ public class vistaModificarConsultorio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error: El consultorio ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        ConsultorioEspecializado consultorioModificado = new ConsultorioEspecializado(numeroConsultorio, seccion);
 
-
-        consultorioModificar.setNumeroConsultorio(numeroConsultorio);
-        consultorioModificar.setSeccion(seccion);
-
+        controladorConsultorios.modificarCita(consultorioModificado);
 
         vistaGuardarConExito exito = new vistaGuardarConExito();
         exito.setVisible(true);
 
         limpiarCampos();
-        System.out.println(consultorioModificar.getNumeroConsultorio() + consultorioModificar.getSeccion());
         dispose();
     }
     private void limpiarCampos() {

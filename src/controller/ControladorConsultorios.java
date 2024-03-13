@@ -36,4 +36,13 @@ public class ControladorConsultorios {
         return false;
     }
 
+    public void modificarCita(ConsultorioEspecializado consultorioModificado) {
+        for (int i = 0; i < consultorios.size(); i++) {
+            if (consultorios.get(i).getNumeroConsultorio().equals(consultorioModificado.getNumeroConsultorio())) {
+                consultorios.set(i, consultorioModificado);
+                break;
+            }
+        }
+    }
+
 }

@@ -31,12 +31,9 @@ public class vistaCostoTotal extends JFrame {
 
     public void actualizarTablaCitas() {
 
-        // Obtener las citas del controlador
         List<CitaMedica> citas = controlador.listarCitas();
-        // Limpiar la tabla
         DefaultTableModel modelo = (DefaultTableModel) tablaHistorialPaciente.getModel();
         modelo.setRowCount(0);
-        // Llenar la tabla con las nuevas citas
         for (CitaMedica cita : citas) {
             Object[] fila = new Object[5];
             fila[0] = cita.getNumeroIdentificacion();
@@ -256,14 +253,11 @@ public class vistaCostoTotal extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                // Crear una instancia de ControladorCitas
                 ControladorCitas controlador = new ControladorCitas();
 
-                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador,controladorConsultorios);
                 vistaCostoTotal vistaCostoTotal = new vistaCostoTotal(controlador);
                 vistaCostoTotal.setVisible(true);
-                // Hacer visible el frame de vistaListaPacientes
                 listaPacientesFrame.setVisible(true);
             }
         });

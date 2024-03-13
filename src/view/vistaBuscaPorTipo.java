@@ -190,10 +190,8 @@ public class vistaBuscaPorTipo extends javax.swing.JFrame {
                 ControladorCitas controlador = new ControladorCitas();
                 ControladorConsultorios controladorConsultorios = new ControladorConsultorios();
 
-                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
                 vistaBuscaPorTipo vistaBuscaPorTipo= new vistaBuscaPorTipo(controlador,controladorConsultorios);
 
-                // Hacer visible el frame de vistaListaPacientes
                 vistaBuscaPorTipo.setVisible(true);
             }
         });

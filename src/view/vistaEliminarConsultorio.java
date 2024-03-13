@@ -4,6 +4,10 @@
  */
 package view;
 
+import controller.ControladorConsultorios;
+import model.CitaMedica;
+import model.ConsultorioEspecializado;
+
 import javax.swing.*;
 
 /**
@@ -12,13 +16,16 @@ import javax.swing.*;
  */
 public class vistaEliminarConsultorio extends javax.swing.JFrame {
 
+    private ControladorConsultorios controladorConsultorios;
     /**
      * Creates new form vistaEliminarConsultorio
      */
-    public vistaEliminarConsultorio() {
+    public vistaEliminarConsultorio(ControladorConsultorios controlador) {
 
+        this.controladorConsultorios = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -146,10 +153,22 @@ public class vistaEliminarConsultorio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        vistaEliminarExito vista = new vistaEliminarExito();
-        vista.setVisible(true);
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {
+        String numeroConsultorio = txtNumeroConsultorio.getText();
+        ConsultorioEspecializado consultorioEspecializado = controladorConsultorios.buscarPornumeroConsultorio(numeroConsultorio);
+
+        if (consultorioEspecializado != null) {
+            controladorConsultorios.eliminarConsultorio(consultorioEspecializado);
+            vistaEliminarExito exito = new vistaEliminarExito();
+            exito.setVisible(true);
+        }
+
+        else {
+            vistaEliminarFallido fallido = new vistaEliminarFallido();
+            fallido.setVisible(true);
+        }
+        dispose();
+    }
 
     /**
      * @param args the command line arguments
@@ -181,7 +200,13 @@ public class vistaEliminarConsultorio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaEliminarConsultorio().setVisible(true);
+
+                ControladorConsultorios controlador = new ControladorConsultorios();
+
+                vistaEliminarConsultorio vista = new vistaEliminarConsultorio(controlador);
+
+                vista.setVisible(true);
+
             }
         });
     }

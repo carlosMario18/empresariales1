@@ -11,19 +11,19 @@ import model.CitaMedica;
 import javax.swing.*;
 
 /**
- *
  * @author alejandrosanmiguel
  */
 public class vistaBuscar extends JFrame {
 
     private ControladorCitas controlador;
     private ControladorConsultorios controladorConsultorios;
+
     /**
      * Creates new form vistaBuscar
      */
     public vistaBuscar(ControladorCitas controlador) {
 
-       this.controlador = controlador;
+        this.controlador = controlador;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -60,24 +60,24 @@ public class vistaBuscar extends JFrame {
         GroupLayout panelCabezaLayout = new GroupLayout(panelCabeza);
         panelCabeza.setLayout(panelCabezaLayout);
         panelCabezaLayout.setHorizontalGroup(
-            panelCabezaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabezaLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelTitulo)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelCabezaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCabezaLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelTitulo)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCabezaLayout.setVerticalGroup(
-            panelCabezaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(panelCabezaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(GroupLayout.Alignment.TRAILING, panelCabezaLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitulo)
-                .addGap(30, 30, 30))
+                panelCabezaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCabezaLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, panelCabezaLayout.createSequentialGroup()
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelTitulo)
+                                .addGap(30, 30, 30))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,54 +99,54 @@ public class vistaBuscar extends JFrame {
         GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(labelNumeroIdentificacion, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNumeroIdentificacion3, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(labelNumeroIdentificacion, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNumeroIdentificacion3, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(167, 167, 167)
+                                .addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumeroIdentificacion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumeroIdentificacion3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(btnAceptar)
-                .addGap(31, 31, 31))
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(labelNumeroIdentificacion, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNumeroIdentificacion3, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addComponent(btnAceptar)
+                                .addGap(31, 31, 31))
         );
 
         GroupLayout panelPrincipalVistaBuscarLayout = new GroupLayout(panelPrincipalVistaBuscar);
         panelPrincipalVistaBuscar.setLayout(panelPrincipalVistaBuscarLayout);
         panelPrincipalVistaBuscarLayout.setHorizontalGroup(
-            panelPrincipalVistaBuscarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelCabeza, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                panelPrincipalVistaBuscarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelCabeza, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelPrincipalVistaBuscarLayout.setVerticalGroup(
-            panelPrincipalVistaBuscarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(panelPrincipalVistaBuscarLayout.createSequentialGroup()
-                .addComponent(panelCabeza, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelPrincipalVistaBuscarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelPrincipalVistaBuscarLayout.createSequentialGroup()
+                                .addComponent(panelCabeza, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipalVistaBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(panelPrincipalVistaBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipalVistaBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(panelPrincipalVistaBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -159,21 +159,17 @@ public class vistaBuscar extends JFrame {
         vistaListaPacientes listaPacientesFrame = new vistaListaPacientes(controlador, controladorConsultorios);
         System.out.println(controlador.idExistente(id));
         System.out.println(citaModificar);
-        // Verificar si se encontró la cita
         if (citaModificar != null) {
-            // Obtener el tipo de cita de la cita encontrada
             String tipoCita = citaModificar.getTipoCita();
 
-            // Abrir el JFrame vistaModificar y pasar la cita a modificar y el tipo de cita
             vistaModificar vistaModificar = new vistaModificar(controlador, citaModificar, tipoCita, listaPacientesFrame);
             vistaModificar.setVisible(true);
-            dispose(); // Cerrar el JFrame actual
+            dispose();
         } else {
-            // Mostrar un mensaje de error si no se encontró la cita
             System.out.println("Fallo");
             vistaEliminarFallido fallido = new vistaEliminarFallido();
             fallido.setVisible(true);
-            dispose(); // Cerrar el JFrame actual
+            dispose();
         }
     }
 //GEN-LAST:event_btnAceptarActionPerformed
@@ -185,7 +181,7 @@ public class vistaBuscar extends JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -210,10 +206,8 @@ public class vistaBuscar extends JFrame {
             public void run() {
                 ControladorCitas controlador = new ControladorCitas();
 
-                // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
-                 vistaBuscar vistaBuscar= new vistaBuscar(controlador);
+                vistaBuscar vistaBuscar = new vistaBuscar(controlador);
 
-                // Hacer visible el frame de vistaListaPacientes
                 vistaBuscar.setVisible(true);
             }
         });

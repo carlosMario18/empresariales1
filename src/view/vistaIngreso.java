@@ -273,10 +273,8 @@ public class vistaIngreso extends JFrame {
 
 
     private void btnListaPacientesActionPerformed(ActionEvent evt) {
-        // Crear una instancia de vistaListaPacientes y pasar el controlador al constructor
         vistaListaPacientes vistaListaPacientes = new vistaListaPacientes(controlador, controladorConsultorio);
 
-        // Hacer visible el frame de vistaListaPacientes
         vistaListaPacientes.setVisible(true);
     }
 
@@ -291,7 +289,7 @@ public class vistaIngreso extends JFrame {
     }//GEN-LAST:event_btnAcercaDeActionPerformed
 
     private void btnEliminarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador);
+        vistaBuscarPorTipoEliminar vistaBuscarPorTipoEliminar = new vistaBuscarPorTipoEliminar(controlador, controladorConsultorio);
         vistaBuscarPorTipoEliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
